@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TimeManagementAppGui</ApplicationTitle>
+		<ApplicationTitle>Time Management App</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.timemanagementappgui</ApplicationId>
