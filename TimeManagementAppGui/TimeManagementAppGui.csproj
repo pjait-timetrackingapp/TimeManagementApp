@@ -55,4 +55,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\TmaLib\TmaLib.csproj" />
+	</ItemGroup>
+
 </Project>
