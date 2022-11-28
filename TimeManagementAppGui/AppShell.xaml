@@ -13,7 +13,7 @@
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage" />
         </Tab>
-        <Tab>
+        <Tab Title="New page1">
             <ShellContent 
                 Title="Add" 
                 ContentTemplate="{DataTemplate local:NewPage1}" 
