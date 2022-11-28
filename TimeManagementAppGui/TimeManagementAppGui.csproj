@@ -50,6 +50,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Syncfusion.Maui.Scheduler" Version="20.3.58" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="NewPage1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

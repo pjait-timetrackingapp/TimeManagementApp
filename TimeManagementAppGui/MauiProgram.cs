@@ -1,4 +1,6 @@
-﻿namespace TimeManagementAppGui;
+﻿using Syncfusion.Maui.Core.Hosting;
+
+namespace TimeManagementAppGui;
 
 public static class MauiProgram
 {
@@ -6,6 +8,7 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
+			.ConfigureSyncfusionCore()
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
