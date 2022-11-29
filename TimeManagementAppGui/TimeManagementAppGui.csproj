@@ -50,13 +50,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Syncfusion.Maui.Scheduler" Version="20.3.58" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="NewPage1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+	  <PackageReference Include="DevExpress.Maui.Scheduler">
+	    <Version>22.1.6</Version>
+	  </PackageReference>
+	</ItemGroup>
 </Project>
