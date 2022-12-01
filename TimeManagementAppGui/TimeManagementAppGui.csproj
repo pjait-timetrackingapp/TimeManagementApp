@@ -68,6 +68,12 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+	  <PackageReference Include="DevExpress.Maui.Scheduler">
+	    <Version>22.1.6</Version>
+	  </PackageReference>
+	</ItemGroup>
+	
 	<ItemGroup>
 	  <ProjectReference Include="..\TmaLib\TmaLib.csproj" />
 	</ItemGroup>
