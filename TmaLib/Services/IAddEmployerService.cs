@@ -1,7 +1,9 @@
-﻿namespace TmaLib.Services
+﻿using TmaLib.Model;
+
+namespace TmaLib.Services
 {
     public interface IAddEmployerService
     {
-        void AddEmployer();
+        void AddEmployer(Employer employer);
     }
 }
