@@ -30,11 +30,6 @@
                         </scheduler:SchedulerDataStorage.DataSource>
                     </scheduler:SchedulerDataStorage>
                 </scheduler:WeekView.DataStorage>
-                <scheduler:WeekView.CellStyle>
-                    <scheduler:DayViewCellStyle >
-                        
-                    </scheduler:DayViewCellStyle>
-                </scheduler:WeekView.CellStyle>
             </scheduler:WeekView>
         </VerticalStackLayout>
     </ScrollView>
