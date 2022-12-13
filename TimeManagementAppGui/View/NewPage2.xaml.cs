@@ -1,8 +1,8 @@
 namespace TimeManagementAppGui;
 
-public partial class NewPage1 : ContentPage
+public partial class NewPage2 : ContentPage
 {
-	public NewPage1()
+	public NewPage2()
 	{
 		InitializeComponent();
 	}

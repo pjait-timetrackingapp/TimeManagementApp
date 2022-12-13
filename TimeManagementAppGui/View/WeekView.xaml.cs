@@ -1,8 +1,8 @@
 ﻿namespace TimeManagementAppGui;
 
-public partial class MainPage : ContentPage
+public partial class WeekView : ContentView
 {
-	public MainPage()
+	public WeekView()
 	{
 		InitializeComponent();
 	}
