@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:vm="clr-namespace:TimeManagementAppGui.ViewModel"
+             xmlns:local="clr-namespace:TimeManagementAppGui"
+             xmlns:converter="clr-namespace:TimeManagementAppGui.Utils.Converters"
+             xmlns:scheduler="clr-namespace:DevExpress.Maui.Scheduler;assembly=DevExpress.Maui.Scheduler"
+             x:Class="TimeManagementAppGui.MonthView">
+    <ContentView.BindingContext>
+        <vm:SchedulerViewModel></vm:SchedulerViewModel>
+    </ContentView.BindingContext>
+    <VerticalStackLayout>
+        <Button Text="{Binding Month, StringFormat='{0:MMMM}'}" Command="{Binding DisplayCalendar}" x:Name="MonthButton"></Button>
+        <scheduler:MonthView x:Name="MonthScheduler">
+        </scheduler:MonthView>
+    </VerticalStackLayout>
+</ContentView>
