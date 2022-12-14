@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using TmaLib.Model;
-using Xunit.Sdk;
+﻿using TmaLib.Model;
 
 namespace TmaLib.Services
 {
     public class AddEmployerService : IAddEmployerService
     {
-    
         public List<Employer> Employers = new List<Employer>();
-        
+
         public AddEmployerService()
         {
-       
+
         }
         public Employer MakeEmployer(UserInputAddEmployer userInput)
         {

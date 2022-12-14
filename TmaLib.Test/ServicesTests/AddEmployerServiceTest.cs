@@ -47,7 +47,6 @@ namespace TmaLib.Test.ServicesTests
             _sut.AddEmployer(userInput);
 
             //Assert
-            var employerTest = _sut.Employers.FirstOrDefault();
             Assert.Equal(3, _sut?.Employers?.FirstOrDefault()?.Id);
         }
     }

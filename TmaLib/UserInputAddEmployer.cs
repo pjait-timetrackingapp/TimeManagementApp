@@ -11,9 +11,9 @@ namespace TmaLib
     {
         public long Id;
         public string Name;
-        public UserInputAddEmployer(long Id, string name)
+        public UserInputAddEmployer(long id, string name)
         {
-            this.Id = Id;
+            Id = id;
             Name = name;
         }
     }
