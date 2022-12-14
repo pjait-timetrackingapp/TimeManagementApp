@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TmaLib.Model;
@@ -10,21 +11,22 @@ namespace TmaLib.Services
 {
     public class AddEmployerService : IAddEmployerService
     {
-        public Employer employer;
+    
         public List<Employer> Employers = new List<Employer>();
         
-
-        public AddEmployerService(UserInputAddEmployer userInput)
+        public AddEmployerService()
         {
-            employer = new Employer(userInput);
-            employer.Id = userInput._id;
-            employer.Name = userInput._name;
+       
+        }
+        public Employer MakeEmployer(UserInputAddEmployer userInput)
+        {
+            return new Employer(userInput);
         }
 
-        public void AddEmployer(Employer employer)
+        public void AddEmployer(UserInputAddEmployer userInput)
         {
+            var employer = MakeEmployer(userInput);
             Employers.Add(employer);
         }
-
     }
 }

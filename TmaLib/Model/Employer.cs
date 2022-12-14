@@ -13,8 +13,8 @@ namespace TmaLib.Model
 
         public Employer(UserInputAddEmployer userInputAddEmployer)
         {
-            Id = userInputAddEmployer._id;
-            Name= userInputAddEmployer._name;
+            Id = userInputAddEmployer.Id;
+            Name= userInputAddEmployer.Name;
 
         }
 

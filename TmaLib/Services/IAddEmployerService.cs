@@ -4,6 +4,6 @@ namespace TmaLib.Services
 {
     public interface IAddEmployerService
     {
-        void AddEmployer(Employer employer);
+        void AddEmployer(UserInputAddEmployer userInput);
     }
 }

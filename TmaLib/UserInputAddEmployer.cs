@@ -9,13 +9,12 @@ namespace TmaLib
 {
     public class UserInputAddEmployer
     {
-        public long _id;
-        public string _name;
+        public long Id;
+        public string Name;
         public UserInputAddEmployer(long Id, string name)
         {
-            _id = Id;
-            _name = name;
-
+            this.Id = Id;
+            Name = name;
         }
     }
 }
