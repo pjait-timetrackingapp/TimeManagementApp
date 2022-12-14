@@ -15,10 +15,6 @@ namespace TmaLib.Model
         {
             Id = userInputAddEmployer.Id;
             Name= userInputAddEmployer.Name;
-
         }
-
-    }
-
-    
+    }    
 }
