@@ -49,5 +49,27 @@ namespace TmaLib.Test.ServicesTests
             //Assert
             Assert.Equal(3, _sut?.Employers?.FirstOrDefault()?.Id);
         }
+
+        [Fact]  
+        public void AddEmployerNameIsNullTest()
+        {
+            //Arrange
+            var userInput = new UserInputAddEmployer(4, null);
+
+            //Assert
+            var exception = Assert.Throws<System.ArgumentException>(() => _sut.AddEmployer(userInput));
+            Assert.Equal("Name cannot be null", exception.Message);
+        }
+
+        [Fact]
+        public void AddEmployerNameIsEmptyTest() 
+        {
+            //Arrange 
+            var userInput = new UserInputAddEmployer(5, "  ");
+
+            //Assert
+            var exception = Assert.Throws<System.ArgumentException>(() => _sut.AddEmployer(userInput));
+            Assert.Equal("Name cannot be empty", exception.Message);
+        }
     }
 }
