@@ -5,6 +5,7 @@ namespace TmaLib.Services
     public class AddEmployerService : IAddEmployerService
     {
         public List<Employer> Employers = new List<Employer>();
+        public List<Project> EmployerProjects = new List<Project>();
 
         public AddEmployerService()
         {
@@ -28,6 +29,23 @@ namespace TmaLib.Services
 
             var employer = MakeEmployer(userInput);
             Employers.Add(employer);          
+        }
+
+        public Project MakeProject(UserInputAddProject userInputAddProject)
+        {
+            return new Project(userInputAddProject);
+        }
+
+        public void AddProjectToEmployer(string EmployerName, UserInputAddProject userInputAddProject)
+        {
+            foreach(var employer in Employers)
+            {
+                if(employer.Name == EmployerName)
+                {
+                    var project = MakeProject(userInputAddProject);
+                    employer.Projects.Add(project);
+                }
+            }
         }
     }
 }

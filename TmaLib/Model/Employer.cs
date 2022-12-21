@@ -10,6 +10,7 @@ namespace TmaLib.Model
     {
         public long Id { get; set; }
         public string Name { get; set; }
+        public List<Project> Projects { get; set; } 
 
         public Employer(UserInputAddEmployer userInputAddEmployer)
         {

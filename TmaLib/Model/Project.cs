@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TmaLib.Model
 {
-    internal class Project
+    public class Project
     {
         public long projectId { get; set; }
         public string projectName { get; set; }
