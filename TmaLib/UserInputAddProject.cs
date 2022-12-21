@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TmaLib
 {
-    internal class UserInputAddProject
+    public class UserInputAddProject
     {
         public long projectId;
         public string projectName;
