@@ -6,10 +6,10 @@
              x:Class="TimeManagementAppGui.MainPage"
              Title="MainPage">
     <dxco:TabView>
-        <dxco:TabViewItem HeaderText="Month">
+        <dxco:TabViewItem HeaderText="Week">
             <local:WeekView/>
         </dxco:TabViewItem>
-        <dxco:TabViewItem HeaderText="Week">
+        <dxco:TabViewItem HeaderText="Month">
             <local:MonthView/>
         </dxco:TabViewItem>
     </dxco:TabView>

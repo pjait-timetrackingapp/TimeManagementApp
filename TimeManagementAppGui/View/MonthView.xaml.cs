@@ -2,13 +2,13 @@ namespace TimeManagementAppGui;
 
 public partial class MonthView : ContentView
 {
-	public string Month => MonthScheduler?.Start.Month.ToString() ?? "Failed to load data";
-
     public MonthView()
 	{
 		InitializeComponent();
-
-		MonthScheduler.AppointmentHeight = 200;
-		MonthScheduler.Start.Month.ToString();
 	}
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        MonthScheduler.Start = MonthScheduler.Start.AddMonths(1);
+    }
 }
