@@ -38,11 +38,11 @@ namespace TmaLib.Services
 
         public void AddProjectToEmployer(string EmployerName, UserInputAddProject userInputAddProject)
         {
-            foreach(var employer in Employers)
+            var project = MakeProject(userInputAddProject);
+            foreach (var employer in Employers)
             {
                 if(employer.Name == EmployerName)
-                {
-                    var project = MakeProject(userInputAddProject);
+                {                   
                     employer.Projects.Add(project);
                 }
             }
