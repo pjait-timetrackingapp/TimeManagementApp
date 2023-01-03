@@ -71,5 +71,25 @@ namespace TmaLib.Test.ServicesTests
             var exception = Assert.Throws<System.ArgumentException>(() => _sut.AddEmployer(userInput));
             Assert.Equal("Name cannot be empty", exception.Message);
         }
+
+        [Fact]
+        public void AddProjectToEmployerIsNotNull()
+        {
+            //Arrange
+            var userInputAddEmployer = new UserInputAddEmployer(1, "Employer1");
+            _sut.AddEmployer(userInputAddEmployer);
+            var userInputAddProject = new UserInputAddProject(1, "ProjectName1");
+            string employerName = "Employer1";
+            
+
+
+            //Act
+            _sut.AddProjectToEmployer(employerName, userInputAddProject);
+
+            //Assert
+            var employerHasProjectTest = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault();
+            //var employerHasProjectTest = _sut.Employers.FirstOrDefault().Projects.FirstOrDefault();
+            Assert.NotNull(employerHasProjectTest);
+        }
     }
 }
