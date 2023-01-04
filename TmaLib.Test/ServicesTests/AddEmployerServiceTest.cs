@@ -81,8 +81,6 @@ namespace TmaLib.Test.ServicesTests
             var userInputAddProject = new UserInputAddProject(1, "ProjectName1");
             string employerName = "Employer1";
             
-
-
             //Act
             _sut.AddProjectToEmployer(employerName, userInputAddProject);
 
@@ -90,6 +88,65 @@ namespace TmaLib.Test.ServicesTests
             var employerHasProjectTest = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault();
             //var employerHasProjectTest = _sut.Employers.FirstOrDefault().Projects.FirstOrDefault();
             Assert.NotNull(employerHasProjectTest);
+        }
+
+        [Fact]
+        public void AddProjectAddIdTest()
+        {
+            //Arrange
+            var userInputAddEmployer = new UserInputAddEmployer(2, "Employer2");
+            var userInputAddProject = new UserInputAddProject(2, "ProjectName2");
+            string employerName = "Employer2";
+            //Act
+            _sut.AddEmployer(userInputAddEmployer);
+            _sut.AddProjectToEmployer(employerName, userInputAddProject);
+
+            //Assert
+            var projectWithId = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault()?.projectId;
+            Assert.Equal(2, projectWithId);
+        }
+
+        [Fact]
+        public void AddProjectAddNameTest()
+        {
+            //Arrange
+            var userInputAddEmployer = new UserInputAddEmployer(2, "Employer2");
+            var userInputAddProject = new UserInputAddProject(2, "ProjectName2");
+            string employerName = "Employer2";
+            //Act
+            _sut.AddEmployer(userInputAddEmployer);
+            _sut.AddProjectToEmployer(employerName, userInputAddProject);
+
+            //Assert
+            var projectWithId = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault()?.projectName;
+            Assert.Equal("ProjectName2", projectWithId);
+        }
+        [Fact]
+        public void AddProjectNameIsNullTest()
+        {
+            //Arrange
+            var userInputAddEmployer = new UserInputAddEmployer(3, "Employer3");
+            var userInputAddProject = new UserInputAddProject(3, null);
+            string employerName = "Employer3";
+            //Act
+            _sut.AddEmployer(userInputAddEmployer);
+            //Assert
+            var exception = Assert.Throws<System.ArgumentException>(() => _sut.AddProjectToEmployer(employerName, userInputAddProject));
+            Assert.Equal("Name cannot be null", exception.Message);
+        }
+
+        [Fact]
+        public void AddProjectNameIsEmpty()
+        {
+            //Arrange
+            var userInputAddEmployer = new UserInputAddEmployer(4, "Employer4");
+            var userInputAddProject = new UserInputAddProject(4, "  ");
+            string employerName = "Employer4";
+
+            //Assert
+
+            var exception = Assert.Throws<System.ArgumentException>(() => _sut.AddProjectToEmployer(employerName, userInputAddProject));
+            Assert.Equal("Name cannot be empty", exception.Message);
         }
     }
 }
