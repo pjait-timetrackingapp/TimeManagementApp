@@ -7,8 +7,6 @@ namespace TmaLib.Services
     {
         public List<Employer> Employers = new List<Employer>();
         public List<Project> EmployerProjects = new List<Project>();
-        //var dbPath =  Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TestData.db");
-        //var db = new SQLiteConnection(dbPath);
 
         public AddEmployerService()
         {
