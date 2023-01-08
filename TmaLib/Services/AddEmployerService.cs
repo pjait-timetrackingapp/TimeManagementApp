@@ -7,6 +7,7 @@ namespace TmaLib.Services
     {
         public List<Employer> Employers = new List<Employer>();
         public List<Project> EmployerProjects = new List<Project>();
+        SQLiteConnection db;
 
         public AddEmployerService()
         {
@@ -20,7 +21,7 @@ namespace TmaLib.Services
         public void CreateDatabase()
         {
             var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TestData.db");
-            var db = new SQLiteConnection(dbPath);
+            db = new SQLiteConnection(dbPath);
             db.CreateTable<Employer>();
             db.CreateTable<Project>();
         }
@@ -37,7 +38,12 @@ namespace TmaLib.Services
             }
 
             var employer = MakeEmployer(userInput);
-            Employers.Add(employer);          
+            //Employers.Add(employer);
+            db.Insert(employer);
+        }
+        public Employer ReturnEmployerFromDataBase(long employerId)
+        {
+            return db.Get<Employer>(employerId);
         }
 
         public Project MakeProject(UserInputAddProject userInputAddProject)

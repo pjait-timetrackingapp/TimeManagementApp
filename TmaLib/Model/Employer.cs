@@ -15,6 +15,11 @@ namespace TmaLib.Model
         public string Name { get; set; }
         public List<Project> Projects = new List<Project>();
 
+        public Employer()
+        {
+
+        }
+
         public Employer(UserInputAddEmployer userInputAddEmployer)
         {
             Id = userInputAddEmployer.Id;
