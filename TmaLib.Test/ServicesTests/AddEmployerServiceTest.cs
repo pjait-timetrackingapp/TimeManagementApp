@@ -86,7 +86,6 @@ namespace TmaLib.Test.ServicesTests
 
             //Assert
             var employerHasProjectTest = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault();
-            //var employerHasProjectTest = _sut.Employers.FirstOrDefault().Projects.FirstOrDefault();
             Assert.NotNull(employerHasProjectTest);
         }
 

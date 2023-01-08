@@ -13,8 +13,8 @@ namespace TmaLib
 
         public UserInputAddProject(long id, string name)
         {
-            projectId= id;
-            projectName= name;
+            projectId = id;
+            projectName = name;
         }
     }
 }
