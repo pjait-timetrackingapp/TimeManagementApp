@@ -1,4 +1,5 @@
-﻿using TmaLib.Model;
+﻿using SQLite;
+using TmaLib.Model;
 
 namespace TmaLib.Services
 {
@@ -6,14 +7,24 @@ namespace TmaLib.Services
     {
         public List<Employer> Employers = new List<Employer>();
         public List<Project> EmployerProjects = new List<Project>();
+        //var dbPath =  Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TestData.db");
+        //var db = new SQLiteConnection(dbPath);
 
         public AddEmployerService()
         {
-
+            CreateDatabase();
         }
         public Employer MakeEmployer(UserInputAddEmployer userInput)
         {
             return new Employer(userInput);
+        }
+
+        public void CreateDatabase()
+        {
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TestData.db");
+            var db = new SQLiteConnection(dbPath);
+            db.CreateTable<Employer>();
+            db.CreateTable<Project>();
         }
 
         public void AddEmployer(UserInputAddEmployer userInput)
