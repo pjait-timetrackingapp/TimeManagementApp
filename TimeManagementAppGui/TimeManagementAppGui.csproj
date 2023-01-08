@@ -69,6 +69,9 @@
 	  <MauiXaml Update="Controls\FlyoutHeader.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\AddTimeEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\AppointmentsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -112,10 +115,6 @@
 	  <Compile Update="View\MonthView.xaml.cs">
 	    <DependentUpon>MonthView.xaml</DependentUpon>
 	  </Compile>
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Command\" />
 	</ItemGroup>
 
 </Project>

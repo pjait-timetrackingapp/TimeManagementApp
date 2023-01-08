@@ -3,18 +3,19 @@
     x:Class="TimeManagementAppGui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TimeManagementAppGui" CompressedLayout.IsHeadless="True"
+    xmlns:local="clr-namespace:TimeManagementAppGui"
     xmlns:views="clr-namespace:TimeManagementAppGui.View"
     xmlns:controls="clr-namespace:TimeManagementAppGui.Controls">
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
-    
+
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent 
+        <ShellContent
             Title="Kalendarz"
-            ContentTemplate="{DataTemplate local:MainPage}"/>
+            ContentTemplate="{DataTemplate local:MainPage}">
+        </ShellContent>
         <ShellContent 
             Title="Pracodawcy"
             ContentTemplate="{DataTemplate views:Employers}"/>

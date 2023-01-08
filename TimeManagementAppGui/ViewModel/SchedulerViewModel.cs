@@ -22,7 +22,7 @@ namespace TimeManagementAppGui.ViewModel
 
         public SchedulerViewModel() 
         {
-            DisplayCalendar = new Command(
+            DisplayCalendar = new Microsoft.Maui.Controls.Command(
                 execute: () =>
                 {
                     Month = Month.AddMonths(3);
@@ -31,6 +31,7 @@ namespace TimeManagementAppGui.ViewModel
         }
 
         public ICommand DisplayCalendar { get; private set; }
+        public ICommand AddTimeEntryCommand { get; private set; }
 
         private bool TrySetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
