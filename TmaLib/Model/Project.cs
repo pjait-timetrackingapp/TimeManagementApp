@@ -17,8 +17,8 @@ namespace TmaLib.Model
         }
         public Project(UserInputAddProject userInputAddProject)
         {
-            projectId= userInputAddProject.projectId;
-            projectName= userInputAddProject.projectName;
+            projectId = userInputAddProject.projectId;
+            projectName = userInputAddProject.projectName;
         }
     }
 }
