@@ -13,6 +13,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -26,12 +27,15 @@
         <Label Grid.Row="1" Grid.Column="0" Text="Date" Margin="5"/>
         <DatePicker Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Text="Projekt" Margin="5"/>
-        <Picker Grid.Row="2" Grid.Column="1" Background="{x:DynamicResource Gray200}" Margin="5"/>
-
-        <Label Grid.Row="3" Grid.Column="0" Text="Pracodawca" Margin="5"/>
+        <Label Grid.Row="3" Grid.Column="0" Text="Opis" Margin="5"/>
+        <Entry Grid.Row="3" Grid.Column="1" Background="{x:DynamicResource Gray200}" Margin="5"/>
+        
+        <Label Grid.Row="3" Grid.Column="0" Text="Projekt" Margin="5"/>
         <Picker Grid.Row="3" Grid.Column="1" Background="{x:DynamicResource Gray200}" Margin="5"/>
 
-        <Button Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Center" Margin="0, 20, 0, 0" Text="Add entry"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="Pracodawca" Margin="5"/>
+        <Picker Grid.Row="4" Grid.Column="1" Background="{x:DynamicResource Gray200}" Margin="5"/>
+
+        <Button Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Margin="0, 20, 0, 0" Text="Add entry"/>
     </Grid>
 </ContentPage>
