@@ -1,4 +1,7 @@
+using CommunityToolkit.Maui;
 using DevExpress.Maui;
+using TimeManagementAppGui.ViewModel;
+using TmaLib.Services;
 
 namespace TimeManagementAppGui;
 
@@ -9,13 +12,17 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseDevExpress()
-			.UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+		builder.Services.AddSingleton<IAddEmployerService, AddEmployerService>();
+		builder.Services.AddSingleton<SchedulerViewModel>();
 
-		return builder.Build();
+        builder.Services.AddTransient<MonthView>();
+        return builder.Build();
 	}
 }
