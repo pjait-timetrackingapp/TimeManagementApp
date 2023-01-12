@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui;
 using DevExpress.Maui;
+using TimeManagementAppGui.View;
 using TimeManagementAppGui.ViewModel;
 using TmaLib.Services;
 
