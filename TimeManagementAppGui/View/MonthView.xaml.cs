@@ -1,9 +1,12 @@
-namespace TimeManagementAppGui;
+using TimeManagementAppGui.ViewModel;
 
-public partial class MonthView : ContentView
+namespace TimeManagementAppGui.View;
+
+public partial class MonthView : ContentPage
 {
-    public MonthView()
+    public MonthView(SchedulerViewModel vm)
 	{
+        BindingContext = vm;
 		InitializeComponent();
 	}
 
