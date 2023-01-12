@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace TimeManagementAppGui.ViewModel
 {
-    internal class SchedulerViewModel : INotifyPropertyChanged
+    public partial class SchedulerViewModel : INotifyPropertyChanged
     {
         private DateTime _month;
 
