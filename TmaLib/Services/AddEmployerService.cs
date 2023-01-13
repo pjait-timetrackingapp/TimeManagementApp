@@ -56,5 +56,30 @@ namespace TmaLib.Services
                 }
             }
         }
+
+        public async Task<Employer> Get(long employerId)
+        {
+            var employer = Employers.FirstOrDefault(x => x.Id == employerId);
+
+            if (employer is null)
+            {
+                throw new KeyNotFoundException("No such employer");
+            }
+
+            return await Task.FromResult(employer);
+        }
+
+        public async Task Add(TimeEntry timeEntry, long employerId, long projectId)
+        {
+            var employer = await Get(employerId);
+            var project = employer.Projects.FirstOrDefault(x => x.projectId == projectId);
+
+            if (project is null)
+            {
+                throw new KeyNotFoundException("No such project");
+            }
+
+            project.Add(timeEntry);
+        }
     }
 }
