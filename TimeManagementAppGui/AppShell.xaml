@@ -12,7 +12,7 @@
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="Main">
         <ShellContent
             Title="Kalendarz"
             ContentTemplate="{DataTemplate views:MonthView}"
