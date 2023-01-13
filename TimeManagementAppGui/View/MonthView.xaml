@@ -39,7 +39,23 @@
             BackgroundColor="WhiteSmoke"
             TextColor="Black"
             FontAttributes="Bold"/>
-        <schedulerOld:MonthView Grid.Row="1" Grid.ColumnSpan="3" x:Name="MonthScheduler"/>
+        <schedulerOld:MonthView Grid.Row="1" Grid.ColumnSpan="3" x:Name="MonthScheduler">
+            <schedulerOld:MonthView.DataStorage>
+                <schedulerOld:SchedulerDataStorage>
+                    <schedulerOld:SchedulerDataStorage.DataSource>
+                        <schedulerOld:DataSource AppointmentsSource="{Binding TimeEntries}">
+                            <schedulerOld:DataSource.AppointmentMappings>
+                                <schedulerOld:AppointmentMappings
+                                    Start="Start"
+                                    End="End"
+                                    Subject="Subject"
+                                    LabelId="LabelId" />
+                            </schedulerOld:DataSource.AppointmentMappings>
+                        </schedulerOld:DataSource>
+                    </schedulerOld:SchedulerDataStorage.DataSource>
+                </schedulerOld:SchedulerDataStorage>
+            </schedulerOld:MonthView.DataStorage>
+        </schedulerOld:MonthView>
 
         <Button
             Grid.Row="1"
@@ -51,6 +67,6 @@
             VerticalOptions="End"
             Margin="0,0,20,20"
             Text="+"
-            Clicked="Button_Clicked_1"/>
+            Command="{Binding DisplayEntryAdditionPage}"/>
     </Grid>
 </ContentPage>

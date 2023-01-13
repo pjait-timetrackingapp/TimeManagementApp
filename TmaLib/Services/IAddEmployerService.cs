@@ -8,5 +8,6 @@ namespace TmaLib.Services
         void AddProjectToEmployer(string EmployerName, UserInputAddProject userInputAddProject);
         Task<Employer> Get(long employerId);
         Task Add(TimeEntry timeEntry, long employerId, long projectId);
+        Task<IList<Employer>> GetAll();
     }
 }

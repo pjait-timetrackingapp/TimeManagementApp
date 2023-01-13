@@ -1,53 +1,37 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TimeManagementAppGui.ViewModel.Base;
+using TimeManagementAppGui.ViewModel.Base.Dialog;
+using TimeManagementAppGui.ViewModel.Base.Navigation;
+using TmaLib.Services;
 
 namespace TimeManagementAppGui.ViewModel
 {
-    public partial class SchedulerViewModel : INotifyPropertyChanged
+    public partial class SchedulerViewModel : ViewModelBase 
     {
         private DateTime _month;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public DateTime Month 
         { 
-            get => _month; 
-            set 
-            { 
-                _month = value;
-                TrySetProperty(ref _month, value);
-            }
+            get => _month;
+            set => SetProperty(ref _month, value);
         }
-
-        public SchedulerViewModel() 
-        {
-            DisplayCalendar = new Microsoft.Maui.Controls.Command(
-                execute: () =>
-                {
-                    Month = Month.AddMonths(3);
-                    OnPropertyChanged(nameof(Month));
-                });
-        }
-
         public ICommand DisplayCalendar { get; private set; }
-        public ICommand AddTimeEntryCommand { get; private set; }
+        public ICommand DisplayEntryAdditionPage { get; private set; }
 
-        private bool TrySetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        private IAddEmployerService _addEmployerService { get; }
+
+        public SchedulerViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService) 
+            : base(dialogService, navigationService)
         {
-            if (Equals(storage, value))
-            {
-                return false;
-            }
+            _addEmployerService = addEmployerService;
 
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
+            DisplayEntryAdditionPage = new AsyncRelayCommand(DisplayAddItemPage);
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private async Task DisplayAddItemPage()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            await NavigationService.NavigateToAsync("AddEntry");
         }
     }
 }

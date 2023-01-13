@@ -78,6 +78,11 @@ namespace TmaLib.Services
             return await Task.FromResult(employer);
         }
 
+        public async Task<IList<Employer>> GetAll()
+        {
+            return await Task.FromResult(Employers);
+        }
+
         public async Task Add(TimeEntry timeEntry, long employerId, long projectId)
         {
             var employer = await Get(employerId);
