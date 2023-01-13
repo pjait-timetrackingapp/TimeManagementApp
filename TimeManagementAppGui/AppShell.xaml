@@ -5,25 +5,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TimeManagementAppGui"
     xmlns:views="clr-namespace:TimeManagementAppGui.View"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:controls="clr-namespace:TimeManagementAppGui.Controls">
 
     <Shell.FlyoutHeader>
         <controls:FlyoutHeader />
     </Shell.FlyoutHeader>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="Main">
         <ShellContent
             Title="Kalendarz"
-            ContentTemplate="{DataTemplate local:MainPage}">
-        </ShellContent>
+            ContentTemplate="{DataTemplate views:MonthView}"
+            Route="Calendar" />
+
         <ShellContent 
             Title="Pracodawcy"
-            ContentTemplate="{DataTemplate views:Employers}"/>
+            ContentTemplate="{DataTemplate views:Employers}"
+            Route="Employers"/>
         <ShellContent 
             Title="Projekty"
-            ContentTemplate="{DataTemplate views:Projects}"/>
+            ContentTemplate="{DataTemplate views:Projects}"
+            Route="Projects" />
         <ShellContent 
             Title="Ustawienia"
-            ContentTemplate="{DataTemplate views:Settings}"/>
+            ContentTemplate="{DataTemplate views:Settings}"
+            Route="Settings" />
     </FlyoutItem>
 </Shell>

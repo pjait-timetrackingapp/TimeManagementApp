@@ -7,9 +7,18 @@ namespace TmaLib.Services
         public List<Employer> Employers = new List<Employer>();
         public List<Project> EmployerProjects = new List<Project>();
 
+        private void ApplyGuiTestSetup()
+        {
+            var employer = new Employer(new UserInputAddEmployer(1, "John Doe"))
+            { Projects = new List<Project>() { new Project() { projectId = 1, projectName = "Mission BYTpossible" }, new Project() { projectId = 2, projectName = "Nauka japońskiego", } } };
+            employer.Projects[0].timeEntries.Add(new TimeEntry() { DateStarted = DateTime.Today, Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
+            employer.Projects[1].timeEntries.Add(new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "", Duration = TimeSpan.FromHours(8) });
+            Employers.Add(employer);
+        }
+
         public AddEmployerService()
         {
-
+            ApplyGuiTestSetup();
         }
         public Employer MakeEmployer(UserInputAddEmployer userInput)
         {
@@ -55,6 +64,36 @@ namespace TmaLib.Services
                     employer.Projects.Add(project);
                 }
             }
+        }
+
+        public async Task<Employer> Get(long employerId)
+        {
+            var employer = Employers.FirstOrDefault(x => x.Id == employerId);
+
+            if (employer is null)
+            {
+                throw new KeyNotFoundException("No such employer");
+            }
+
+            return await Task.FromResult(employer);
+        }
+
+        public async Task<IList<Employer>> GetAll()
+        {
+            return await Task.FromResult(Employers);
+        }
+
+        public async Task Add(TimeEntry timeEntry, long employerId, long projectId)
+        {
+            var employer = await Get(employerId);
+            var project = employer.Projects.FirstOrDefault(x => x.projectId == projectId);
+
+            if (project is null)
+            {
+                throw new KeyNotFoundException("No such project");
+            }
+
+            project.Add(timeEntry);
         }
     }
 }

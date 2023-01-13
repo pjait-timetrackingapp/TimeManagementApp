@@ -10,15 +10,21 @@ namespace TmaLib.Model
     {
         public long projectId { get; set; }
         public string projectName { get; set; }
+        public List<TimeEntry> timeEntries { get; set; }
 
         public Project()
         {
-
+            timeEntries = new List<TimeEntry>();
         }
-        public Project(UserInputAddProject userInputAddProject)
+        public Project(UserInputAddProject userInputAddProject) : base()
         {
             projectId = userInputAddProject.projectId;
             projectName = userInputAddProject.projectName;
+        }
+
+        public void Add(TimeEntry timeEntry)
+        {
+            timeEntries.Add(timeEntry);
         }
     }
 }
