@@ -39,9 +39,9 @@
             BackgroundColor="WhiteSmoke"
             TextColor="Black"
             FontAttributes="Bold"/>
-        <schedulerOld:MonthView Grid.Row="1" Grid.ColumnSpan="3" x:Name="MonthScheduler">
+        <schedulerOld:MonthView Grid.Row="1" Grid.ColumnSpan="3" x:Name="MonthScheduler" Tap="MonthScheduler_Tap">
             <schedulerOld:MonthView.DataStorage>
-                <schedulerOld:SchedulerDataStorage>
+                <schedulerOld:SchedulerDataStorage x:Name="AppointmentStorage">
                     <schedulerOld:SchedulerDataStorage.DataSource>
                         <schedulerOld:DataSource AppointmentsSource="{Binding TimeEntries}">
                             <schedulerOld:DataSource.AppointmentMappings>
