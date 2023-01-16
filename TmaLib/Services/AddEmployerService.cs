@@ -12,7 +12,7 @@ namespace TmaLib.Services
             var employer = new Employer(new UserInputAddEmployer(1, "John Doe"))
             { Projects = new List<Project>() { new Project() { projectId = 1, projectName = "Mission BYTpossible" }, new Project() { projectId = 2, projectName = "Nauka japońskiego", } } };
             employer.Projects[0].timeEntries.Add(new TimeEntry() { DateStarted = DateTime.Today, Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
-            employer.Projects[1].timeEntries.Add(new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "", Duration = TimeSpan.FromHours(8) });
+            employer.Projects[0].timeEntries.Add(new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "Urlop", Duration = TimeSpan.FromHours(8) });
             Employers.Add(employer);
         }
 
