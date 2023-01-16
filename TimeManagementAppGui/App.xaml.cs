@@ -16,6 +16,7 @@ public partial class App : Application
 	private static void InitializeRouting()
 	{
         Routing.RegisterRoute("AddEntry", typeof(AddTimeEntry));
+		Routing.RegisterRoute("Appointments", typeof(AppointmentsPage));
 		Routing.RegisterRoute("//Main/Calendar", typeof(MonthView));
     }
 }

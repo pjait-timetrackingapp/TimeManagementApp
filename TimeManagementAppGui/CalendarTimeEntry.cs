@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace TimeManagementAppGui
 {
-    public class TimeEntry
+    public class CalendarTimeEntry
     {
         public int Id { get; set; }
         public DateTime StartTime { get; set; }
@@ -36,7 +36,7 @@ namespace TimeManagementAppGui
             var entryIndex = 0;
             DateTime start;
             TimeSpan duration;
-            var result = new ObservableCollection<TimeEntry>();
+            var result = new ObservableCollection<CalendarTimeEntry>();
             for (var i = -20; i < 20; i++)
             {
                 for (var j = 0; j < 7; j++)
@@ -61,10 +61,10 @@ namespace TimeManagementAppGui
             TimeEntries = result;
         }
 
-        private TimeEntry CreateTimeEntry(int entryId, string entryName,
+        private CalendarTimeEntry CreateTimeEntry(int entryId, string entryName,
                                                     DateTime start, TimeSpan duration, int room)
         {
-            var timeEntry = new TimeEntry();
+            var timeEntry = new CalendarTimeEntry();
             timeEntry.Id = entryId;
             timeEntry.StartTime = start;
             timeEntry.EndTime = start.Add(duration);
@@ -77,7 +77,7 @@ namespace TimeManagementAppGui
             return timeEntry;
         }
 
-        public ObservableCollection<TimeEntry> TimeEntries { get; private set; }
+        public ObservableCollection<CalendarTimeEntry> TimeEntries { get; private set; }
 
         public ReceptionDeskData()
         {
@@ -91,7 +91,7 @@ namespace TimeManagementAppGui
 
         public event PropertyChangedEventHandler PropertyChanged;
         public DateTime StartDate { get { return ReceptionDeskData.BaseDate; } }
-        public IReadOnlyList<TimeEntry> MedicalAppointments
+        public IReadOnlyList<CalendarTimeEntry> MedicalAppointments
         { get => data.TimeEntries; }
 
         public ReceptionDeskViewModel()

@@ -31,4 +31,20 @@
             ContentTemplate="{DataTemplate views:Settings}"
             Route="Settings" />
     </FlyoutItem>
+
+    <TabBar>
+        <ShellContent
+            Title="Kalendarz"
+            ContentTemplate="{DataTemplate views:MonthView}"
+            Route="Calendar" />
+
+        <ShellContent 
+            Title="Pracodawcy"
+            ContentTemplate="{DataTemplate views:Employers}"
+            Route="Employers"/>
+        <ShellContent 
+            Title="Projekty"
+            ContentTemplate="{DataTemplate views:Projects}"
+            Route="Projects" />
+    </TabBar>
 </Shell>
