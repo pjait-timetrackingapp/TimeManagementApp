@@ -1,10 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TimeManagementAppGui.ViewModel.Base;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
 using TimeManagementAppGui.ViewModel.Base.Navigation;
-using TmaLib.Services;
 
 namespace TimeManagementAppGui.ViewModel
 {
@@ -16,16 +14,11 @@ namespace TimeManagementAppGui.ViewModel
             get => _month;
             set => SetProperty(ref _month, value);
         }
-        public ICommand DisplayCalendar { get; private set; }
         public ICommand DisplayEntryAdditionPage { get; private set; }
 
-        private IAddEmployerService _addEmployerService { get; }
-
-        public SchedulerViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService) 
+        public SchedulerViewModel(IDialogService dialogService, INavigationService navigationService) 
             : base(dialogService, navigationService)
         {
-            _addEmployerService = addEmployerService;
-
             DisplayEntryAdditionPage = new AsyncRelayCommand(DisplayAddItemPage);
         }
 
