@@ -1,16 +1,25 @@
 ﻿using DevExpress.Maui.Scheduler.Internal;
 using System.Collections.ObjectModel;
+using TimeManagementAppGui.ViewModel.Base;
+using TimeManagementAppGui.ViewModel.Base.Dialog;
+using TimeManagementAppGui.ViewModel.Base.Navigation;
 using TmaLib.Services;
 
 namespace TimeManagementAppGui.ViewModel
 {
-    public class SchedulerDataViewModel
+    public partial class SchedulerDataViewModel : ViewModelBase
     {
-        public ObservableCollection<SchedulerEntry> TimeEntries { get; private set; }
-        public IAddEmployerService _addEmployerService { get; }
+        private readonly IDialogService _dialogService;
+        private readonly INavigationService _navigationService;
+        private readonly IAddEmployerService _addEmployerService;
 
-        public SchedulerDataViewModel(IAddEmployerService addEmployerService)
+        public ObservableCollection<SchedulerEntry> TimeEntries { get; private set; }
+        public DateTime TimeboxDate { get; internal set; }
+
+        public SchedulerDataViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService) : base(dialogService, navigationService)
         {
+            _dialogService = dialogService;
+            _navigationService = navigationService;
             _addEmployerService = addEmployerService;
 
             TimeEntries = new ObservableCollection<SchedulerEntry>();
@@ -39,6 +48,17 @@ namespace TimeManagementAppGui.ViewModel
                     });
                 });
             });
+        }
+
+        public void DisplayDetailsPage(DateTime date)
+        {
+            TimeboxDate = date;
+            NavigationService.NavigateToAsync("Appointments");
+        }
+
+        public IEnumerable<SchedulerEntry> GetSelectedDaySchedulerEntries(DateTime date)
+        {
+            return TimeEntries.Where(te => te.Start.Date == date);
         }
     }
 

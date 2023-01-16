@@ -1,16 +1,17 @@
-using DevExpress.Maui.Scheduler;
+using TimeManagementAppGui.ViewModel;
 
 namespace TimeManagementAppGui.View;
 
 public partial class AppointmentsPage : ContentPage
 {
-    public IEnumerable<AppointmentItem> Appointments { get; }
-	public AppointmentsPage(IEnumerable<AppointmentItem> appointments)
+    public DateTime Date { get; set; }
+    public IEnumerable<CalendarTimeEntry> TimeEntries { get; }
+	public AppointmentsPage(SchedulerDataViewModel vm)
 	{
 		InitializeComponent();
-        Appointments = appointments;
+        BindingContext = vm;
 
-        collectionView.ItemsSource = Appointments;
+        collectionView.ItemsSource = vm.GetSelectedDaySchedulerEntries(vm.TimeboxDate);
+        Page.Title = vm.TimeboxDate.ToLongDateString();
     }
-
 }
