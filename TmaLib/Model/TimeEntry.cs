@@ -16,12 +16,6 @@
             Duration = duration;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="start"></param>
-        /// <param name="description"></param>
-        /// <param name="duration"></param>
         /// <exception cref="ArgumentException"></exception>
         public TimeEntry(DateTime start, string description, string duration)
         {

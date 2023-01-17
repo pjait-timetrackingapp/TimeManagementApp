@@ -46,9 +46,8 @@
                         <schedulerOld:DataSource AppointmentsSource="{Binding TimeEntries}">
                             <schedulerOld:DataSource.AppointmentMappings>
                                 <schedulerOld:AppointmentMappings
-                                    Start="Start"
-                                    End="End"
-                                    Subject="Subject"
+                                    Start="TimeEntry.DateStarted"
+                                    Subject="TimeEntry.Description"
                                     LabelId="LabelId" />
                             </schedulerOld:DataSource.AppointmentMappings>
                         </schedulerOld:DataSource>
