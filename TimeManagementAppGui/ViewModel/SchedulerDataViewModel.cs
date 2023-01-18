@@ -17,16 +17,21 @@ namespace TimeManagementAppGui.ViewModel
         private readonly INavigationService _navigationService;
         private readonly IAddEmployerService _addEmployerService;
 
-        public ObservableCollection<SchedulerEntry> TimeEntries { get; private set; }
-        public DateTime TimeboxDate { get; internal set; }
+        [ObservableProperty]
+        public ObservableCollection<SchedulerEntry> timeEntries;
+        
         public List<SchedulerEntry> SelectedAppointments { get; set; }
-        public event EventHandler ViewChanged;
-
+        
         [ObservableProperty]
         private SchedulerEntry selectedTimeEntry;
-
+        
+        public DateTime TimeboxDate { get; internal set; }
+        public bool IsFabVisible { get => selectedTimeEntry != null; }
+        
         public ICommand SelectionChangedCommand { get; set; }
         public ICommand RemoveSelectedItem { get; set; }
+
+        public event EventHandler ViewChanged;
 
         public SchedulerDataViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService) : base(dialogService, navigationService)
         {
@@ -37,24 +42,32 @@ namespace TimeManagementAppGui.ViewModel
             TimeEntries = new ObservableCollection<SchedulerEntry>();
             SelectedAppointments = new List<SchedulerEntry>();
 
-            SelectionChangedCommand = new AsyncRelayCommand(OnSelectionChanged);
+            SelectionChangedCommand = new RelayCommand(OnSelectionChanged);
             RemoveSelectedItem = new RelayCommand(RemoveSelectedItemClick);
+
             InitializeCollection();
         }
 
-        private async Task OnSelectionChanged()
+        private void OnSelectionChanged()
         {
-            // implement RemoveSelectedItem FAB visibility context.
+            OnPropertyChanged(nameof(IsFabVisible));
         }
 
         private void RemoveSelectedItemClick()
         {
-            if (selectedTimeEntry != null) 
+            try
             {
-                TimeEntries.Remove(selectedTimeEntry);
-                _addEmployerService.RemoveTimeEntry(selectedTimeEntry.EntryId, selectedTimeEntry.ProjectId, selectedTimeEntry.EmployerId);
-                ViewChanged?.Invoke(this, EventArgs.Empty);
-                
+                if (selectedTimeEntry != null)
+                {
+                    TimeEntries.Remove(SelectedTimeEntry);
+                    _addEmployerService.RemoveTimeEntry(selectedTimeEntry.EntryId, selectedTimeEntry.ProjectId, selectedTimeEntry.EmployerId);
+                    ViewChanged?.Invoke(this, EventArgs.Empty);
+                    SelectedTimeEntry = null;
+                    OnPropertyChanged(nameof(IsFabVisible));
+                }
+            }
+            catch (ArgumentException)
+            {
             }
         }
 
@@ -65,7 +78,7 @@ namespace TimeManagementAppGui.ViewModel
             var employers = await _addEmployerService.GetAll();
             employers.ForEach(e =>
             {
-                e.Projects.ForEach(p =>
+                e.Projects.ForEach(p => 
                 {
                     var labelId = randomizer.Next(1, 10);
                     p.timeEntries.ForEach(te =>
