@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TmaLib.Model
+﻿namespace TmaLib.Model
 {
     public class Employer
     {
-        public long Id { get; set; }
+        public int EmployerId { get; set; }
         public string Name { get; set; }
-        public List<Project> Projects = new List<Project>();
+
+        public List<Project> Projects = new();
+
+        public Employer()
+        {
+            // Some libs may need an empty ctor to perform some (un)marshalling work
+        }
 
         public Employer(UserInputAddEmployer userInputAddEmployer)
         {
-            Id = userInputAddEmployer.Id;
-            Name= userInputAddEmployer.Name;
+            EmployerId = userInputAddEmployer.Id;
+            Name = userInputAddEmployer.Name;
         }
     }    
 }

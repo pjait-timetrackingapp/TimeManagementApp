@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TmaLib
+﻿namespace TmaLib
 {
     public class UserInputAddProject
     {
-        public long projectId;
-        public string projectName;
+        public string ProjectName { get; set; }
+        public int ProjectId { get; set; }
 
-        public UserInputAddProject(long id, string name)
+        public UserInputAddProject(int id, string name)
         {
-            projectId = id;
-            projectName = name;
+            ProjectId = id;
+            ProjectName = name;
         }
     }
 }
