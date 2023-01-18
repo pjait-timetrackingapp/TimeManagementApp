@@ -2,10 +2,13 @@
 {
     public class TimeEntry
     {
-        public long Id { get; set; } = -1;
+        public int TimeEntryId { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime DateStarted { get; set; }
         public string Description { get; set; } = string.Empty;
+
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
 
         public TimeEntry() { }
 

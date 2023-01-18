@@ -4,6 +4,7 @@ using TimeManagementAppGui.View;
 using TimeManagementAppGui.ViewModel;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
 using TimeManagementAppGui.ViewModel.Base.Navigation;
+using TmaLib.Persistance;
 using TmaLib.Services;
 
 namespace TimeManagementAppGui;
@@ -22,6 +23,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		builder.Services.AddDbContext<TaskContext>();
+
 		builder.Services.AddSingleton<IAddEmployerService, AddEmployerService>();
         builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
         builder.Services.AddSingleton<IDialogService, DialogService>();

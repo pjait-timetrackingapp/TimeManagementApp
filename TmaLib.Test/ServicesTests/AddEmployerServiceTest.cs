@@ -47,7 +47,7 @@ namespace TmaLib.Test.ServicesTests
             _sut.AddEmployer(userInput);
 
             //Assert
-            Assert.Equal(3, _sut?.Employers?.FirstOrDefault()?.Id);
+            Assert.Equal(3, _sut?.Employers?.FirstOrDefault()?.EmployerId);
         }
 
         [Fact]  
@@ -101,7 +101,7 @@ namespace TmaLib.Test.ServicesTests
             _sut.AddProjectToEmployer(employerName, userInputAddProject);
 
             //Assert
-            var projectWithId = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault()?.projectId;
+            var projectWithId = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault()?.ProjectId;
             Assert.Equal(2, projectWithId);
         }
 
@@ -117,7 +117,7 @@ namespace TmaLib.Test.ServicesTests
             _sut.AddProjectToEmployer(employerName, userInputAddProject);
 
             //Assert
-            var projectWithId = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault()?.projectName;
+            var projectWithId = _sut.Employers?.FirstOrDefault()?.Projects?.FirstOrDefault()?.ProjectName;
             Assert.Equal("ProjectName2", projectWithId);
         }
         [Fact]

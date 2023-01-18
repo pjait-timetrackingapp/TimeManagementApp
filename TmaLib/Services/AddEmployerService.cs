@@ -11,11 +11,11 @@ namespace TmaLib.Services
             var employer = new Employer(new UserInputAddEmployer(1, "John Doe"))
             { Projects = new List<Project>()
             {
-                new Project() { projectId = 1, projectName = "Mission BYTpossible" },
-                new Project() { projectId = 2, projectName = "Nauka japońskiego", }
+                new Project() { ProjectId = 1, ProjectName = "Mission BYTpossible" },
+                new Project() { ProjectId = 2, ProjectName = "Nauka japońskiego", }
             } };
-            employer.Projects[0].timeEntries.Add(new TimeEntry() { Id = 1, DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
-            employer.Projects[0].timeEntries.Add(new TimeEntry() { Id = 2, DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8) });
+            employer.Projects[0].TimeEntries.Add(new TimeEntry() { TimeEntryId = 1, DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
+            employer.Projects[0].TimeEntries.Add(new TimeEntry() { TimeEntryId = 2, DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8) });
             Employers.Add(employer);
         }
 
@@ -52,11 +52,11 @@ namespace TmaLib.Services
         {
             var project = MakeProject(userInputAddProject);
 
-            if (userInputAddProject.projectName == null)
+            if (userInputAddProject.ProjectName == null)
             {
                 throw new ArgumentException("Name cannot be null");
             }
-            if (userInputAddProject.projectName.Trim() == string.Empty)
+            if (userInputAddProject.ProjectName.Trim() == string.Empty)
             {
                 throw new ArgumentException("Name cannot be empty");
             }
@@ -71,7 +71,7 @@ namespace TmaLib.Services
 
         public async Task<Employer> Get(long employerId)
         {
-            var employer = Employers.FirstOrDefault(x => x.Id == employerId);
+            var employer = Employers.FirstOrDefault(x => x.EmployerId == employerId);
 
             if (employer is null)
             {
@@ -89,7 +89,7 @@ namespace TmaLib.Services
         public async Task Add(TimeEntry timeEntry, long employerId, long projectId)
         {
             var employer = await Get(employerId);
-            var project = employer.Projects.FirstOrDefault(x => x.projectId == projectId);
+            var project = employer.Projects.FirstOrDefault(x => x.ProjectId == projectId);
 
             if (project is null)
             {
@@ -101,9 +101,9 @@ namespace TmaLib.Services
 
         public void RemoveTimeEntry(long entryId, long projectId, long employerId)
         {
-            var employer = Employers.FirstOrDefault(e => e.Id == employerId);
-            var projectEntries = employer?.Projects.FirstOrDefault(p => p.projectId == projectId)?.timeEntries;
-            var entryToRemove = projectEntries?.FirstOrDefault(te => te.Id == entryId);
+            var employer = Employers.FirstOrDefault(e => e.EmployerId == employerId);
+            var projectEntries = employer?.Projects.FirstOrDefault(p => p.ProjectId == projectId)?.TimeEntries;
+            var entryToRemove = projectEntries?.FirstOrDefault(te => te.TimeEntryId == entryId);
             if (!projectEntries?.Remove(entryToRemove) ?? true)
             {
                 throw new ArgumentException("Entry not found");

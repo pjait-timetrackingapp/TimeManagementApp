@@ -81,15 +81,15 @@ namespace TimeManagementAppGui.ViewModel
                 e.Projects.ForEach(p => 
                 {
                     var labelId = randomizer.Next(1, 10);
-                    p.timeEntries.ForEach(te =>
+                    p.TimeEntries.ForEach(te =>
                     {
                         TimeEntries.Add(new SchedulerEntry()
                         {
                             LabelId = labelId,
                             TimeEntry = te,
-                            EmployerId = e.Id,
-                            ProjectId = p.projectId,
-                            EntryId = te.Id,
+                            EmployerId = e.EmployerId,
+                            ProjectId = p.ProjectId,
+                            EntryId = te.TimeEntryId,
 
                         });
                     });

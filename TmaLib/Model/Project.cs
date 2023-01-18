@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TmaLib.Model
+﻿namespace TmaLib.Model
 {
     public class Project
     {
-        public long projectId { get; set; }
-        public string projectName { get; set; }
-        public List<TimeEntry> timeEntries { get; set; }
+        public int ProjectId { get; set; }
+        public string ProjectName { get; set; } = string.Empty;
+        
+        public List<TimeEntry> TimeEntries = new();
 
         public Project()
         {
-            timeEntries = new List<TimeEntry>();
         }
+
         public Project(UserInputAddProject userInputAddProject) : base()
         {
-            projectId = userInputAddProject.projectId;
-            projectName = userInputAddProject.projectName;
+            ProjectId = userInputAddProject.ProjectId;
+            ProjectName = userInputAddProject.ProjectName;
         }
 
         public void Add(TimeEntry timeEntry)
         {
-            timeEntries.Add(timeEntry);
+            TimeEntries.Add(timeEntry);
         }
     }
 }
