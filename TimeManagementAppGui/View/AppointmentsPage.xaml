@@ -7,7 +7,7 @@
              x:Name="Page">
     <Grid>
         <VerticalStackLayout>
-            <dxcv:DXCollectionView x:Name="collectionView" SelectionMode="Single" SelectedItem="{Binding SelectedTimeEntry, Mode=TwoWay, UpdateSourceEventName=PropertyChanged}">
+            <dxcv:DXCollectionView x:Name="collectionView" SelectionMode="Single" SelectedItem="{Binding SelectedTimeEntry, Mode=TwoWay}">
                 <dxcv:DXCollectionView.Behaviors>
                     <toolkit:EventToCommandBehavior 
                     EventName="SelectionChanged" 
@@ -54,6 +54,7 @@
                 VerticalOptions="End"
                 Margin="0,0,16,16"
                 Text="-"
-                Command="{Binding RemoveSelectedItem}"/>
+                Command="{Binding RemoveSelectedItem}"
+                IsVisible="{Binding IsFabVisible}"/>
     </Grid>
 </ContentPage>

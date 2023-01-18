@@ -14,7 +14,7 @@ namespace TmaLib.Services
                 new Project() { projectId = 1, projectName = "Mission BYTpossible" },
                 new Project() { projectId = 2, projectName = "Nauka japońskiego", }
             } };
-            employer.Projects[0].timeEntries.Add(new TimeEntry() { Id = 1, DateStarted = DateTime.Today, Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
+            employer.Projects[0].timeEntries.Add(new TimeEntry() { Id = 1, DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
             employer.Projects[0].timeEntries.Add(new TimeEntry() { Id = 2, DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8) });
             Employers.Add(employer);
         }

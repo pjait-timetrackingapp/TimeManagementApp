@@ -4,14 +4,24 @@ namespace TimeManagementAppGui.View;
 
 public partial class AppointmentsPage : ContentPage
 {
-	public AppointmentsPage(SchedulerDataViewModel vm)
+    private readonly SchedulerDataViewModel _schedulerDataViewModel;
+
+    public AppointmentsPage(SchedulerDataViewModel vm)
 	{
         BindingContext = vm;
-		InitializeComponent();
+        _schedulerDataViewModel = vm;
+		
+        InitializeComponent();
 
-
-        //To fix - deleted items stay in Timebox Appointments page.
-        collectionView.ItemsSource = vm.GetSelectedDaySchedulerEntries(vm.TimeboxDate);
         Page.Title = vm.TimeboxDate.ToLongDateString();
+        
+        collectionView.ItemsSource = vm.GetSelectedDaySchedulerEntries(vm.TimeboxDate);
+
+        vm.ViewChanged += Vm_ViewChanged;
+    }
+
+    private void Vm_ViewChanged(object sender, EventArgs e)
+    {
+        collectionView.ItemsSource = _schedulerDataViewModel.GetSelectedDaySchedulerEntries(_schedulerDataViewModel.TimeboxDate);
     }
 }
