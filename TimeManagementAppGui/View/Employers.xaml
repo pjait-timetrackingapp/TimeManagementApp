@@ -3,10 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimeManagementAppGui.View.Employers"
              Title="Employers">
-    <VerticalStackLayout>
-        <Label 
-            Text="Employers"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid VerticalOptions="Center" Margin="10,0,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Miejsce zatrudnienia"/>
+
+        <Button 
+            Grid.Row="5" 
+            Grid.ColumnSpan="2" 
+            HorizontalOptions="Center" 
+            Margin="0, 20, 0, 0" 
+            Text="Add employer"
+            Command="{Binding AddEmployer}"/>
+    </Grid>
 </ContentPage>
