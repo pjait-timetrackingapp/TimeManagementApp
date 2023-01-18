@@ -7,6 +7,7 @@ using TimeManagementAppGui.ViewModel.Base;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
 using TimeManagementAppGui.ViewModel.Base.Navigation;
 using TmaLib.Model;
+using TmaLib.Persistance;
 using TmaLib.Services;
 
 namespace TimeManagementAppGui.ViewModel
@@ -33,7 +34,7 @@ namespace TimeManagementAppGui.ViewModel
 
         public event EventHandler ViewChanged;
 
-        public SchedulerDataViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService) : base(dialogService, navigationService)
+        public SchedulerDataViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService, TaskContext dbContext) : base(dialogService, navigationService)
         {
             _dialogService = dialogService;
             _navigationService = navigationService;

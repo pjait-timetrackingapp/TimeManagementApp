@@ -18,5 +18,8 @@ namespace TmaLib.Persistance
             var path = Environment.GetFolderPath(DatabaseLocation);
             DbPath = Path.Join(path, DatabaseName);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite($"Data Source={DbPath}");
     }
 }
