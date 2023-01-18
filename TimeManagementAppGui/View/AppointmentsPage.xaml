@@ -26,7 +26,7 @@
                 </dxcv:DXCollectionView.ItemTemplate>
                 <dxcv:DXCollectionView.SelectedItemTemplate>
                     <DataTemplate>
-                        <Border Margin="10, 1"
+                        <Border Margin="0,2"
                             Padding="0"
                             Stroke="Orange"
                             HorizontalOptions="FillAndExpand"
