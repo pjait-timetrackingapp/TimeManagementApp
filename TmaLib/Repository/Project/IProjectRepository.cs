@@ -6,6 +6,7 @@ namespace TmaLib.Repository
     {
         Project Add(Project project);
         List<Project> GetAll();
+        List<Project> GetAllByEmployerId(int id);
         Task<Project> GetById(int id);
         Project Remove(Project project);
         Task SaveChanges();

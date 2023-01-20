@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TmaLib.Model;
 using TmaLib.Persistance;
+using System.Linq;
 
 namespace TmaLib.Repository
 {
@@ -49,6 +50,11 @@ namespace TmaLib.Repository
         public Project Update(Project project)
         {
             return _taskContext.Update(project).Entity;
+        }
+
+        public List<Project> GetAllByEmployerId(int id)
+        {
+            return _taskContext.Projects.Where(p => p.EmployerId == id).ToList();
         }
     }
 }
