@@ -61,6 +61,8 @@
             Grid.Column="1" 
             Background="{x:DynamicResource Gray200}" 
             Margin="5"
+            ItemsSource="{Binding Employers}"
+            ItemDisplayBinding="{Binding Name}"
             SelectedIndex="{Binding ProjectId}"/>
 
         <Label 

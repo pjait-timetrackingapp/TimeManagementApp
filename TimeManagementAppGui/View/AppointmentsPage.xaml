@@ -26,21 +26,14 @@
                 </dxcv:DXCollectionView.ItemTemplate>
                 <dxcv:DXCollectionView.SelectedItemTemplate>
                     <DataTemplate>
-                        <Border Margin="0,2"
-                            Padding="0"
-                            Stroke="Orange"
-                            HorizontalOptions="FillAndExpand"
-                            BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
-                            StrokeThickness="2"
-                            StrokeShape="RoundRectangle 10">
-                            <StackLayout Padding="18,1,18,7">
-                                <Label Text="{Binding TimeEntry.Description}"
+                        <StackLayout Padding="18,1,18,7" 
+                                     BackgroundColor="{StaticResource Primary}">
+                            <Label Text="{Binding TimeEntry.Description}"
                                 Margin="0,2"
-                                TextColor="#55575c"/>
-                                <Label Text="{Binding TimeEntry.DateStarted, StringFormat='{0:dddd, dd MMMM yyyy HH:mm}'}"
-                                TextColor="#959aa0"/>
-                            </StackLayout>
-                        </Border>
+                                TextColor="{StaticResource White}"/>
+                            <Label Text="{Binding TimeEntry.DateStarted, StringFormat='{0:dddd, dd MMMM yyyy HH:mm}'}"
+                                TextColor="{StaticResource White}"/>
+                        </StackLayout>
                     </DataTemplate>
                 </dxcv:DXCollectionView.SelectedItemTemplate>
             </dxcv:DXCollectionView>

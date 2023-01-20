@@ -69,10 +69,6 @@ namespace TimeManagementAppGui.ViewModel
                     SelectedAppointments.Remove(SelectedTimeEntry);
                     var item = TimeEntries.FirstOrDefault(x => x.TimeEntry.Id == entryId);
                     TimeEntries.Remove(item);
-                    //_addEmployerService.RemoveTimeEntry(selectedTimeEntry.EntryId, selectedTimeEntry.ProjectId, selectedTimeEntry.EmployerId);
-
-                    //UpdateSelectedAppointments();
-                    //ViewChanged?.Invoke(this, EventArgs.Empty);
                     SelectedTimeEntry = null;
                     OnPropertyChanged(nameof(IsFabVisible));
                 }
