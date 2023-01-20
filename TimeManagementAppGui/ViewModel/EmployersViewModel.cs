@@ -49,7 +49,6 @@ namespace TimeManagementAppGui.ViewModel
 
         private void AddEmployer()
         {
-            //NavigationService.NavigateToAsync("../AddEmployer");
             NavigationService.NavigateToAsync("AddEmployer");
         }
 
