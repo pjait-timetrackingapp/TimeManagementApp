@@ -22,7 +22,7 @@ namespace TimeManagementAppGui.ViewModel
         [RelayCommand]
         private void AddEmployer(string name)
         {
-            _addEmployerService.AddEmployer(new TmaLib.UserInputAddEmployer(3, name));
+            _addEmployerService.AddEmployer(new TmaLib.UserInputAddEmployer(name));
             NavigationService.NavigateToAsync("//Main/Calendar");
         }
     }

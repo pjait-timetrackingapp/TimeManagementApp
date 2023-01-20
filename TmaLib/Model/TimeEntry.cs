@@ -2,7 +2,7 @@
 {
     public class TimeEntry
     {
-        public int TimeEntryId { get; set; }
+        public int Id { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime DateStarted { get; set; }
         public string Description { get; set; } = string.Empty;

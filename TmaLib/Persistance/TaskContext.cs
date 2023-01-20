@@ -17,6 +17,8 @@ namespace TmaLib.Persistance
         {
             var path = Environment.GetFolderPath(DatabaseLocation);
             DbPath = Path.Join(path, DatabaseName);
+            //Database.EnsureCreated();
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

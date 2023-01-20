@@ -2,7 +2,7 @@
 {
     public class Employer
     {
-        public int EmployerId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public List<Project> Projects = new();
@@ -14,7 +14,6 @@
 
         public Employer(UserInputAddEmployer userInputAddEmployer)
         {
-            EmployerId = userInputAddEmployer.Id;
             Name = userInputAddEmployer.Name;
         }
     }    
