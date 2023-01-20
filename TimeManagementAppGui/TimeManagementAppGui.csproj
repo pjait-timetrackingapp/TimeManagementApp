@@ -74,6 +74,9 @@
 	  <MauiXaml Update="View\AddEmployerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\AddProject.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\AddTimeEntry.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

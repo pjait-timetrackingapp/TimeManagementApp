@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Windows.Input;
 using TimeManagementAppGui.ViewModel.Base;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
 using TimeManagementAppGui.ViewModel.Base.Navigation;

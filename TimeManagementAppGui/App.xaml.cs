@@ -20,6 +20,7 @@ public partial class App : Application
 		Routing.RegisterRoute("Appointments", typeof(AppointmentsPage));
 		Routing.RegisterRoute("//Main/Calendar", typeof(MonthView));
 		Routing.RegisterRoute("//Main/Employers", typeof(Employers));
+		Routing.RegisterRoute("//Main/Employers/Projects", typeof(Projects));
 		Routing.RegisterRoute("//Main/Employers/AddEmployer", typeof(AddEmployerView));
     }
 }

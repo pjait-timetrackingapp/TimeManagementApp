@@ -3,22 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimeManagementAppGui.View.AddEmployerView"
              Title="Dodaj miejsce pracy">
-    <Grid VerticalOptions="Center" Margin="10,0,10,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="0.3*"/>
-        </Grid.ColumnDefinitions>
-
+    <Grid VerticalOptions="Center" Margin="10,0,10,0" HorizontalOptions="Center">
         <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Miejsce zatrudnienia"/>
-
         <Button 
             Grid.Row="5" 
             Grid.ColumnSpan="2" 

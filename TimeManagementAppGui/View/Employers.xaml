@@ -11,6 +11,9 @@
     <Grid>
         <VerticalStackLayout>
             <dxcv:DXCollectionView x:Name="employersView" SelectionMode="Single" SelectedItem="{Binding SelectedEmployer, Mode=TwoWay}">
+                <dxcv:DXCollectionView.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding SwipeCommand}"/>
+                </dxcv:DXCollectionView.GestureRecognizers>
                 <dxcv:DXCollectionView.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="SelectionChanged" 
@@ -45,7 +48,19 @@
                 VerticalOptions="End"
                 Margin="0,0,16,16"
                 Text="-"
-                Command="{Binding RemoveSelectedItem}"
+                Command="{Binding RemoveSelectedItemCommand}"
+                IsVisible="{Binding IsFabVisible}"/>
+
+        <Button
+                Grid.Row="0"
+                CornerRadius="16"
+                HeightRequest="56"
+                WidthRequest="100"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                Margin="16,0,0,16"
+                Text="Szczegóły"
+                Command="{Binding DetailsCommand}"
                 IsVisible="{Binding IsFabVisible}"/>
     </Grid>
 </ContentPage>

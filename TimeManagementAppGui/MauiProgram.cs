@@ -39,12 +39,14 @@ public static class MauiProgram
         builder.Services.AddSingleton<AddTimeEntryViewModel>();
         builder.Services.AddSingleton<AddEmployerViewModel>();
         builder.Services.AddSingleton<EmployersViewModel>();
+        builder.Services.AddSingleton<AddProjectViewModel>();
 
         builder.Services.AddTransient<MonthView>();
         builder.Services.AddTransient<AppointmentsPage>();
         builder.Services.AddTransient<AddTimeEntry>();
         builder.Services.AddTransient<Employers>();
         builder.Services.AddTransient<AddEmployerView>();
+        builder.Services.AddTransient<AddProject>();
         return builder.Build();
     }
 }
