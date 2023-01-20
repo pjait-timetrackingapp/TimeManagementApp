@@ -2,9 +2,11 @@
 {
     public class Project
     {
-        public int ProjectId { get; set; }
+        public int Id { get; set; }
         public string ProjectName { get; set; } = string.Empty;
-        
+
+        public Employer Employer { get; set; }
+        public int EmployerId { get; set; }
         public List<TimeEntry> TimeEntries = new();
 
         public Project()
@@ -13,7 +15,7 @@
 
         public Project(UserInputAddProject userInputAddProject) : base()
         {
-            ProjectId = userInputAddProject.ProjectId;
+            Id = userInputAddProject.ProjectId;
             ProjectName = userInputAddProject.ProjectName;
         }
 

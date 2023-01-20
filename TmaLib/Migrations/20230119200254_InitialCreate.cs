@@ -15,33 +15,40 @@ namespace TmaLib.Migrations
                 name: "Employers",
                 columns: table => new
                 {
-                    EmployerId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employers", x => x.EmployerId);
+                    table.PrimaryKey("PK_Employers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
-                    ProjectId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ProjectName = table.Column<string>(type: "TEXT", nullable: false)
+                    ProjectName = table.Column<string>(type: "TEXT", nullable: false),
+                    EmployerId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.ProjectId);
+                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Projects_Employers_EmployerId",
+                        column: x => x.EmployerId,
+                        principalTable: "Employers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TimeEntries",
                 columns: table => new
                 {
-                    TimeEntryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Duration = table.Column<TimeSpan>(type: "TEXT", nullable: false),
                     DateStarted = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -50,14 +57,19 @@ namespace TmaLib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TimeEntries", x => x.TimeEntryId);
+                    table.PrimaryKey("PK_TimeEntries", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TimeEntries_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
-                        principalColumn: "ProjectId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_EmployerId",
+                table: "Projects",
+                column: "EmployerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TimeEntries_ProjectId",
@@ -69,13 +81,13 @@ namespace TmaLib.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Employers");
-
-            migrationBuilder.DropTable(
                 name: "TimeEntries");
 
             migrationBuilder.DropTable(
                 name: "Projects");
+
+            migrationBuilder.DropTable(
+                name: "Employers");
         }
     }
 }

@@ -13,8 +13,14 @@ public partial class MonthView : ContentPage
 		InitializeComponent();
         MonthScheduler.BindingContext = schedulerData;
         this.vm = schedulerData;
+
+        schedulerData.ViewChanged += SchedulerData_ViewChanged;
     }
 
+    private void SchedulerData_ViewChanged(object sender, EventArgs e)
+    {
+        vm.InitializeCollection();
+    }
 
     private void MonthScheduler_Tap(object sender, SchedulerGestureEventArgs e)
     {

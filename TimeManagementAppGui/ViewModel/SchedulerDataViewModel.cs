@@ -1,27 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DevExpress.Maui.Scheduler.Internal;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TimeManagementAppGui.ViewModel.Base;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
 using TimeManagementAppGui.ViewModel.Base.Navigation;
 using TmaLib.Model;
-using TmaLib.Persistance;
+using TmaLib.Repository;
 using TmaLib.Services;
 
 namespace TimeManagementAppGui.ViewModel
 {
     public partial class SchedulerDataViewModel : ViewModelBase
     {
-        private readonly IDialogService _dialogService;
-        private readonly INavigationService _navigationService;
         private readonly IAddEmployerService _addEmployerService;
-
+        private readonly ITimeEntryRepository _timeEntryRepository;
+        private readonly IEmployerRepository _employerRepository;
         [ObservableProperty]
         public ObservableCollection<SchedulerEntry> timeEntries;
         
-        public List<SchedulerEntry> SelectedAppointments { get; set; }
+        public ObservableCollection<SchedulerEntry> SelectedAppointments { get; set; }
         
         [ObservableProperty]
         private SchedulerEntry selectedTimeEntry;
@@ -34,20 +32,25 @@ namespace TimeManagementAppGui.ViewModel
 
         public event EventHandler ViewChanged;
 
-        public SchedulerDataViewModel(IDialogService dialogService, INavigationService navigationService, IAddEmployerService addEmployerService, TaskContext dbContext) : base(dialogService, navigationService)
+        public SchedulerDataViewModel(
+            IDialogService dialogService,
+            INavigationService navigationService,
+            IAddEmployerService addEmployerService,
+            ITimeEntryRepository timeEntryRepository,
+            IEmployerRepository employerRepository) : base(dialogService, navigationService)
         {
-            _dialogService = dialogService;
-            _navigationService = navigationService;
             _addEmployerService = addEmployerService;
-
+            _timeEntryRepository = timeEntryRepository;
+            _employerRepository = employerRepository;
             TimeEntries = new ObservableCollection<SchedulerEntry>();
-            SelectedAppointments = new List<SchedulerEntry>();
+            SelectedAppointments = new ObservableCollection<SchedulerEntry>();
 
             SelectionChangedCommand = new RelayCommand(OnSelectionChanged);
             RemoveSelectedItem = new RelayCommand(RemoveSelectedItemClick);
 
             InitializeCollection();
         }
+
 
         private void OnSelectionChanged()
         {
@@ -60,9 +63,16 @@ namespace TimeManagementAppGui.ViewModel
             {
                 if (selectedTimeEntry != null)
                 {
-                    TimeEntries.Remove(SelectedTimeEntry);
-                    _addEmployerService.RemoveTimeEntry(selectedTimeEntry.EntryId, selectedTimeEntry.ProjectId, selectedTimeEntry.EmployerId);
-                    ViewChanged?.Invoke(this, EventArgs.Empty);
+                    var entryId = selectedTimeEntry.TimeEntry.Id;
+                    _timeEntryRepository.Remove(selectedTimeEntry.TimeEntry);
+                    _timeEntryRepository.SaveChanges();
+                    SelectedAppointments.Remove(SelectedTimeEntry);
+                    var item = TimeEntries.FirstOrDefault(x => x.TimeEntry.Id == entryId);
+                    TimeEntries.Remove(item);
+                    //_addEmployerService.RemoveTimeEntry(selectedTimeEntry.EntryId, selectedTimeEntry.ProjectId, selectedTimeEntry.EmployerId);
+
+                    //UpdateSelectedAppointments();
+                    //ViewChanged?.Invoke(this, EventArgs.Empty);
                     SelectedTimeEntry = null;
                     OnPropertyChanged(nameof(IsFabVisible));
                 }
@@ -72,41 +82,49 @@ namespace TimeManagementAppGui.ViewModel
             }
         }
 
-        public async Task InitializeCollection()
+        public void InitializeCollection()
         {
-            TimeEntries.Clear();
-            var randomizer = new Random();
-            var employers = await _addEmployerService.GetAll();
-            employers.ForEach(e =>
-            {
-                e.Projects.ForEach(p => 
-                {
-                    var labelId = randomizer.Next(1, 10);
-                    p.TimeEntries.ForEach(te =>
-                    {
-                        TimeEntries.Add(new SchedulerEntry()
-                        {
-                            LabelId = labelId,
-                            TimeEntry = te,
-                            EmployerId = e.EmployerId,
-                            ProjectId = p.ProjectId,
-                            EntryId = te.TimeEntryId,
+            var entries = _timeEntryRepository.GetAll();
+            TimeEntries = Convert(entries);
+        }
 
-                        });
-                    });
+        public void UpdateSelectedAppointments()
+        {
+            var items = TimeEntries.Where(te => te.TimeEntry.DateStarted.Date == TimeboxDate.Date).ToList();
+            SelectedAppointments.Clear();
+            items.ForEach(i => SelectedAppointments.Add(i));
+        }
+
+        public ObservableCollection<SchedulerEntry> Convert(List<TimeEntry> entries)
+        {
+            ObservableCollection<SchedulerEntry> timeEntries = new();
+            entries.ForEach(te =>
+            {
+                timeEntries.Add(new SchedulerEntry()
+                {
+                    LabelId = te.ProjectId % 10 + 1,
+                    TimeEntry = te,
+                    ProjectId = te.ProjectId,
+                    EntryId = te.Id,
                 });
             });
+
+            return timeEntries;
         }
 
-        public void DisplayDetailsPage(DateTime date)
+        public async Task DisplayDetailsPage(DateTime date)
         {
             TimeboxDate = date;
-            NavigationService.NavigateToAsync("Appointments");
+            var data = _timeEntryRepository.GetByDate(date.Date);
+            SelectedAppointments = Convert(data);
+            await NavigationService.NavigateToAsync("Appointments");
         }
 
-        public IEnumerable<SchedulerEntry> GetSelectedDaySchedulerEntries(DateTime date)
+        public List<SchedulerEntry> GetSelectedDayEntries(DateTime date)
         {
-            return TimeEntries.Where(te => te.TimeEntry.DateStarted.Date == date);
+            var data = _timeEntryRepository.GetByDate(date.Date);
+            var schedulerEntries = Convert(data).ToList();
+            return schedulerEntries;
         }
     }
 

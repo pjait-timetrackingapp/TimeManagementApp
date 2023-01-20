@@ -11,7 +11,7 @@ using TmaLib.Persistance;
 namespace TmaLib.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    [Migration("20230118211746_InitialCreate")]
+    [Migration("20230119200254_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -22,7 +22,7 @@ namespace TmaLib.Migrations
 
             modelBuilder.Entity("TmaLib.Model.Employer", b =>
                 {
-                    b.Property<int>("EmployerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -30,29 +30,34 @@ namespace TmaLib.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("EmployerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Employers");
                 });
 
             modelBuilder.Entity("TmaLib.Model.Project", b =>
                 {
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmployerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ProjectId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployerId");
 
                     b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("TmaLib.Model.TimeEntry", b =>
                 {
-                    b.Property<int>("TimeEntryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -69,11 +74,22 @@ namespace TmaLib.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("TimeEntryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
                     b.ToTable("TimeEntries");
+                });
+
+            modelBuilder.Entity("TmaLib.Model.Project", b =>
+                {
+                    b.HasOne("TmaLib.Model.Employer", "Employer")
+                        .WithMany()
+                        .HasForeignKey("EmployerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employer");
                 });
 
             modelBuilder.Entity("TmaLib.Model.TimeEntry", b =>

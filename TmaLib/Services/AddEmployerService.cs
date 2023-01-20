@@ -1,27 +1,30 @@
 ﻿using TmaLib.Model;
+using TmaLib.Repository;
 
 namespace TmaLib.Services
 {
     public class AddEmployerService : IAddEmployerService
     {
         public List<Employer> Employers = new List<Employer>();
+        private readonly IEmployerRepository _employerRepository;
 
-        private void ApplyGuiTestSetup()
+        public AddEmployerService(IEmployerRepository employerRepository, IProjectRepository projectRepository, ITimeEntryRepository timeEntryRepository)
         {
-            var employer = new Employer(new UserInputAddEmployer(1, "John Doe"))
-            { Projects = new List<Project>()
-            {
-                new Project() { ProjectId = 1, ProjectName = "Mission BYTpossible" },
-                new Project() { ProjectId = 2, ProjectName = "Nauka japońskiego", }
-            } };
-            employer.Projects[0].TimeEntries.Add(new TimeEntry() { TimeEntryId = 1, DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5) });
-            employer.Projects[0].TimeEntries.Add(new TimeEntry() { TimeEntryId = 2, DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8) });
-            Employers.Add(employer);
-        }
+            _employerRepository = employerRepository;
 
-        public AddEmployerService()
-        {
-            ApplyGuiTestSetup();
+            var employer = new Employer(new UserInputAddEmployer("John Doe"));
+            var employerData = _employerRepository.Add(employer);
+            var project1 = new Project() { ProjectName = "Mission BYTpossible", Employer = employerData, EmployerId = employerData.Id };
+            var project2 = new Project() { ProjectName = "Nauka japońskiego", Employer = employerData, EmployerId = employerData.Id };
+            var pdata1 = projectRepository.Add(project1);
+            var pdata2 = projectRepository.Add(project2);
+
+            var te1 = new TimeEntry() { DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5), Project = pdata1, ProjectId = pdata1.Id };
+            var te2 = new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8), Project = pdata2, ProjectId = pdata2.Id };
+            //var projectData1 = 
+            timeEntryRepository.Add(te1);
+            timeEntryRepository.Add(te2);
+            _employerRepository.SaveChanges();
         }
         public Employer MakeEmployer(UserInputAddEmployer userInput)
         {
@@ -71,7 +74,7 @@ namespace TmaLib.Services
 
         public async Task<Employer> Get(long employerId)
         {
-            var employer = Employers.FirstOrDefault(x => x.EmployerId == employerId);
+            var employer = Employers.FirstOrDefault(x => x.Id == employerId);
 
             if (employer is null)
             {
@@ -89,7 +92,7 @@ namespace TmaLib.Services
         public async Task Add(TimeEntry timeEntry, long employerId, long projectId)
         {
             var employer = await Get(employerId);
-            var project = employer.Projects.FirstOrDefault(x => x.ProjectId == projectId);
+            var project = employer.Projects.FirstOrDefault(x => x.Id == projectId);
 
             if (project is null)
             {
@@ -101,15 +104,13 @@ namespace TmaLib.Services
 
         public void RemoveTimeEntry(long entryId, long projectId, long employerId)
         {
-            var employer = Employers.FirstOrDefault(e => e.EmployerId == employerId);
-            var projectEntries = employer?.Projects.FirstOrDefault(p => p.ProjectId == projectId)?.TimeEntries;
-            var entryToRemove = projectEntries?.FirstOrDefault(te => te.TimeEntryId == entryId);
+            var employer = Employers.FirstOrDefault(e => e.Id == employerId);
+            var projectEntries = employer?.Projects.FirstOrDefault(p => p.Id == projectId)?.TimeEntries;
+            var entryToRemove = projectEntries?.FirstOrDefault(te => te.Id == entryId);
             if (!projectEntries?.Remove(entryToRemove) ?? true)
             {
                 throw new ArgumentException("Entry not found");
             }
-
-            // TODO: Refresh view
         }
     }
 }

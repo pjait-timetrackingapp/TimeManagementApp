@@ -2,7 +2,7 @@
 using TmaLib.Model;
 using TmaLib.Persistance;
 
-namespace TmaLib
+namespace TmaLib.Repository
 {
     public class EmployerRepository : RepositoryBase, IEmployerRepository
     {
@@ -13,15 +13,20 @@ namespace TmaLib
             _taskContext = taskContext;
         }
 
-        public async Task<List<Employer>> GetAll()
+        public async Task SaveChanges()
         {
-            return await _taskContext.Employers.ToListAsync();
+            await _taskContext.SaveChangesAsync();
+        }
+
+        public List<Employer> GetAll()
+        {
+            return _taskContext.Employers.ToList();
         }
 
         /// <exception cref="KeyNotFoundException"></exception>
         public async Task<Employer> GetById(int id)
         {
-            var result = await _taskContext.Employers.FindAsync(id);
+            var result = await _taskContext.FindAsync<Employer>(id);
 
             if (result == null)
             {
@@ -33,12 +38,12 @@ namespace TmaLib
 
         public Employer Add(Employer employer)
         {
-            return _taskContext.Employers.Add(employer).Entity;
+            return _taskContext.Add(employer).Entity;
         }
 
         public Employer Remove(Employer employer)
         {
-            return _taskContext.Employers.Remove(employer).Entity;
+            return _taskContext.Remove(employer).Entity;
         }
 
         public Employer Update(Employer employer)
