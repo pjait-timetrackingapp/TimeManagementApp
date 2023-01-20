@@ -14,13 +14,13 @@ public partial class Employers : ContentPage
         _vm.ViewChanged += Vm_ViewChanged;
     }
 
-    private async void Vm_ViewChanged(object sender, EventArgs e)
+    private void Vm_ViewChanged(object sender, EventArgs e)
     {
-        employersView.ItemsSource = await _vm.GetEmployers();
+        employersView.ItemsSource = _vm.GetEmployers();
     }
 
-    private async void ContentPage_Appearing(object sender, EventArgs e)
+    private void ContentPage_Appearing(object sender, EventArgs e)
     {
-        employersView.ItemsSource = await _vm.GetEmployers();
+        employersView.ItemsSource = _vm.GetEmployers();
     }
 }

@@ -44,6 +44,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AppointmentsPage>();
         builder.Services.AddTransient<AddTimeEntry>();
         builder.Services.AddTransient<Employers>();
+        builder.Services.AddTransient<AddEmployerView>();
         return builder.Build();
     }
 }

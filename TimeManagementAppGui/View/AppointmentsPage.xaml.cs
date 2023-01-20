@@ -1,5 +1,4 @@
-using DevExpress.Maui.Scheduler.Internal;
-using System.Collections.ObjectModel;
+using System.Globalization;
 using TimeManagementAppGui.ViewModel;
 
 namespace TimeManagementAppGui.View;
@@ -15,7 +14,7 @@ public partial class AppointmentsPage : ContentPage
 
         InitializeComponent();
 
-        Page.Title = vm.TimeboxDate.ToLongDateString();
+        Page.Title = vm.TimeboxDate.ToString("ddd d MMMM", CultureInfo.CreateSpecificCulture("pl-PL"));
         collectionView.ItemsSource = vm.SelectedAppointments;
 
         vm.SelectedAppointments.CollectionChanged += TimeEntries_CollectionChanged;

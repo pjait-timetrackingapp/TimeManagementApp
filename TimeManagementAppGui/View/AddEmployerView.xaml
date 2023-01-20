@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimeManagementAppGui.View.AddEmployerView"
-             Title="AddEmployerView">
+             Title="Dodaj miejsce pracy">
     <Grid VerticalOptions="Center" Margin="10,0,10,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -25,6 +25,6 @@
             HorizontalOptions="Center" 
             Margin="0, 20, 0, 0" 
             Text="Add employer"
-            Command="{Binding AddEmployer}"/>
+            Command="{Binding AddEmployerCommand}"/>
     </Grid>
 </ContentPage>

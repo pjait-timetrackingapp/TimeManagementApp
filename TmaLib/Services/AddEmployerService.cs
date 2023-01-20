@@ -21,7 +21,6 @@ namespace TmaLib.Services
 
             var te1 = new TimeEntry() { DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5), Project = pdata1, ProjectId = pdata1.Id };
             var te2 = new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8), Project = pdata2, ProjectId = pdata2.Id };
-            //var projectData1 = 
             timeEntryRepository.Add(te1);
             timeEntryRepository.Add(te2);
             _employerRepository.SaveChanges();
@@ -43,7 +42,8 @@ namespace TmaLib.Services
             }
 
             var employer = MakeEmployer(userInput);
-            Employers.Add(employer);          
+            _employerRepository.Add(employer);
+            _employerRepository.SaveChanges();
         }
 
         public Project MakeProject(UserInputAddProject userInputAddProject)

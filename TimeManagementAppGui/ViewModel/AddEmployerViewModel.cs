@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
 using TimeManagementAppGui.ViewModel.Base;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
 using TimeManagementAppGui.ViewModel.Base.Navigation;
@@ -20,10 +21,10 @@ namespace TimeManagementAppGui.ViewModel
         }
 
         [RelayCommand]
-        private void AddEmployer(string name)
+        private void AddEmployer()
         {
-            _addEmployerService.AddEmployer(new TmaLib.UserInputAddEmployer(name));
-            NavigationService.NavigateToAsync("//Main/Calendar");
+            _addEmployerService.AddEmployer(new TmaLib.UserInputAddEmployer(Name));
+            NavigationService.NavigateToAsync("//Main/Employers");
         }
     }
 }

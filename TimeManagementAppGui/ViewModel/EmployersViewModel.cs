@@ -19,6 +19,7 @@ namespace TimeManagementAppGui.ViewModel
         public bool IsFabVisible { get => _selectedEmployer != null; }
 
         public ICommand SelectionChangedCommand { get; set; }
+        public ICommand AddEmployerCommand { get; set; }
         public ICommand RemoveSelectedItem { get; set; }
 
         public event EventHandler ViewChanged;
@@ -32,18 +33,24 @@ namespace TimeManagementAppGui.ViewModel
             _projectRepository = projectRepository;
 
             SelectionChangedCommand = new RelayCommand(OnSelectionChanged);
+            AddEmployerCommand = new RelayCommand(AddEmployer);
             RemoveSelectedItem = new AsyncRelayCommand(RemoveSelectedItemClick);
         }
 
-        public async Task<List<Employer>> GetEmployers()
+        public List<Employer> GetEmployers()
         {
-            var data = _employerRepository.GetAll();
-            return data;
+            return _employerRepository.GetAll();
         }
 
         private void OnSelectionChanged()
         {
             OnPropertyChanged(nameof(IsFabVisible));
+        }
+
+        private void AddEmployer()
+        {
+            //NavigationService.NavigateToAsync("../AddEmployer");
+            NavigationService.NavigateToAsync("AddEmployer");
         }
 
         private async Task RemoveSelectedItemClick()

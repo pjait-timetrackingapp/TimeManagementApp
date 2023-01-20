@@ -47,7 +47,7 @@
         <Entry 
             Grid.Row="2" 
             Grid.Column="1" 
-            Background="{x:DynamicResource Gray200}" 
+            Background="{x:DynamicResource Gray100}" 
             Margin="5"
             Text="{Binding Description, Mode=TwoWay}"/>
         
@@ -59,7 +59,7 @@
         <Picker
             Grid.Row="3" 
             Grid.Column="1" 
-            Background="{x:DynamicResource Gray200}" 
+            Background="{x:DynamicResource Gray100}" 
             Margin="5"
             ItemsSource="{Binding Employers}"
             ItemDisplayBinding="{Binding Name}"
