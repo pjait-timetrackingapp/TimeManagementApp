@@ -17,7 +17,6 @@
             Title="Kalendarz"
             ContentTemplate="{DataTemplate views:MonthView}"
             Route="Calendar" />
-        <ShellContent Title="Projects" ContentTemplate="{DataTemplate views:Projects}" Route="Projects"/>
         <ShellContent 
             Title="Pracodawcy"
             ContentTemplate="{DataTemplate views:Employers}"

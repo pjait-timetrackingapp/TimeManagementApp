@@ -12,11 +12,12 @@
 
         public TimeEntry() { }
 
-        public TimeEntry(DateTime start, string description, TimeSpan duration)
+        public TimeEntry(DateTime start, string description, TimeSpan duration, int projectId)
         {
             Description = description;
             DateStarted = start;
             Duration = duration;
+            ProjectId = projectId;
         }
 
         /// <exception cref="ArgumentException"></exception>
