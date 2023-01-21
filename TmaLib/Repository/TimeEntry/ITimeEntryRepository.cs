@@ -8,6 +8,7 @@ namespace TmaLib.Repository
         List<Model.TimeEntry> GetAll();
         List<TimeEntry> GetByDate(DateTime date);
         Task<Model.TimeEntry> GetById(int id);
+        IEnumerable<TimeEntry> GetTimeEntriesForProject(int id);
         Model.TimeEntry Remove(Model.TimeEntry employer);
         Task SaveChanges();
         Model.TimeEntry Update(Model.TimeEntry employer);

@@ -12,23 +12,23 @@ namespace TmaLib.Services
         {
             _employerRepository = employerRepository;
 
-            var employer = new Employer(new UserInputAddEmployer("John Doe"));
-            var employerData = _employerRepository.Add(employer);
-            var project1 = new Project() { ProjectName = "Mission BYTpossible", Employer = employerData, EmployerId = employerData.Id };
-            var project2 = new Project() { ProjectName = "Nauka Japońskiego", Employer = employerData, EmployerId = employerData.Id };
-            var project3 = new Project() { ProjectName = "Nauka Chińskiego", Employer = employerData, EmployerId = employerData.Id };
-            var project4 = new Project() { ProjectName = "Nauka Angielskiego", Employer = employerData, EmployerId = employerData.Id };
+            //var employer = new Employer(new UserInputAddEmployer("John Doe"));
+            //var employerData = _employerRepository.Add(employer);
+            //var project1 = new Project() { ProjectName = "Mission BYTpossible", Employer = employerData, EmployerId = employerData.Id };
+            //var project2 = new Project() { ProjectName = "Nauka Japońskiego", Employer = employerData, EmployerId = employerData.Id };
+            //var project3 = new Project() { ProjectName = "Nauka Chińskiego", Employer = employerData, EmployerId = employerData.Id };
+            //var project4 = new Project() { ProjectName = "Nauka Angielskiego", Employer = employerData, EmployerId = employerData.Id };
             
-            var pdata1 = projectRepository.Add(project1);
-            var pdata2 = projectRepository.Add(project2);
-            var pdata3 = projectRepository.Add(project3);
-            var pdata4 = projectRepository.Add(project4);
+            //var pdata1 = projectRepository.Add(project1);
+            //var pdata2 = projectRepository.Add(project2);
+            //var pdata3 = projectRepository.Add(project3);
+            //var pdata4 = projectRepository.Add(project4);
 
-            var te1 = new TimeEntry() { DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5), Project = pdata1, ProjectId = pdata1.Id };
-            var te2 = new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8), Project = pdata2, ProjectId = pdata2.Id };
-            timeEntryRepository.Add(te1);
-            timeEntryRepository.Add(te2);
-            _employerRepository.SaveChanges();
+            //var te1 = new TimeEntry() { DateStarted = DateTime.Today.AddHours(8), Description = "Projekt na BYT 🙂", Duration = TimeSpan.FromHours(3.5), Project = pdata1, ProjectId = pdata1.Id };
+            //var te2 = new TimeEntry() { DateStarted = DateTime.Today.AddDays(-2), Description = "Raport z testów", Duration = TimeSpan.FromHours(8), Project = pdata2, ProjectId = pdata2.Id };
+            //timeEntryRepository.Add(te1);
+            //timeEntryRepository.Add(te2);
+            //_employerRepository.SaveChanges();
         }
         public Employer MakeEmployer(UserInputAddEmployer userInput)
         {

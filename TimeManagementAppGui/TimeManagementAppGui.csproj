@@ -57,6 +57,7 @@
 	  </PackageReference>
 	  <PackageReference Include="DevExpress.Maui.Charts" Version="22.2.3" />
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="22.2.3" />
+	  <PackageReference Include="DevExpress.Maui.DataGrid" Version="22.2.3" />
 	  <PackageReference Include="DevExpress.Maui.Editors" Version="22.2.3" />
 	  <PackageReference Include="DevExpress.Maui.Scheduler" Version="22.2.3" />
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
@@ -89,10 +90,10 @@
 	  <MauiXaml Update="View\MonthView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\NewPage2.xaml">
+	  <MauiXaml Update="View\Projects.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Projects.xaml">
+	  <MauiXaml Update="View\ProjectTimeEntries.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Settings.xaml">

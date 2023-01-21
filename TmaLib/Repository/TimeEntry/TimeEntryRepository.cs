@@ -55,5 +55,10 @@ namespace TmaLib.Repository
         {
             return _taskContext.Update(employer).Entity;
         }
+
+        public IEnumerable<TimeEntry> GetTimeEntriesForProject(int id)
+        {
+            return _taskContext.TimeEntries.Where(te => te.ProjectId == id);
+        }
     }
 }

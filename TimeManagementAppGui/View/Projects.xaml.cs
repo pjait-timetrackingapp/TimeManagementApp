@@ -11,5 +11,6 @@ public partial class Projects : ContentPage
         InitializeComponent();
         BindingContext = vm;
         _vm = vm;
+        var y = Navigation.NavigationStack;
     }
 }

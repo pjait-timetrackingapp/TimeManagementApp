@@ -13,12 +13,14 @@ namespace TimeManagementAppGui.ViewModel
     public partial class EmployersViewModel : ViewModelBase
     {
         private readonly IEmployerRepository _employerRepository;
-        private IProjectRepository _projectRepository;
+        private readonly IProjectRepository _projectRepository;
+        private readonly ITimeEntryRepository _timeEntryRepository;
         [ObservableProperty]
         private Employer _selectedEmployer;
         [ObservableProperty]
         private Project _selectedProject;
         public ObservableCollection<Project> Projects { get; set; } = new();
+        public ObservableCollection<TimeEntry> TimeEntries { get; set; } = new();
 
         public bool IsFabVisible { get => _selectedEmployer != null; }
         public bool IsProjectFabVisible { get => _selectedProject != null; }
@@ -30,10 +32,11 @@ namespace TimeManagementAppGui.ViewModel
         public EmployersViewModel(
             IDialogService dialogService,
             INavigationService navigationService,
-            IEmployerRepository employerRepository, IProjectRepository projectRepository) : base(dialogService, navigationService)
+            IEmployerRepository employerRepository, IProjectRepository projectRepository, ITimeEntryRepository timeEntryRepository) : base(dialogService, navigationService)
         {
             _employerRepository = employerRepository;
             _projectRepository = projectRepository;
+            _timeEntryRepository = timeEntryRepository;
 
             RemoveSelectedItemCommand = new AsyncRelayCommand(RemoveSelectedItem);
         }
@@ -58,22 +61,21 @@ namespace TimeManagementAppGui.ViewModel
         {
             if (SelectedProject != null)
             {
-                //TimeEntries = new ObservableCollection<TimeEntry>(/*GetProjectsForEmployer()*/);
+                TimeEntries = new ObservableCollection<TimeEntry>(GetTimeEntriesForProject());
             }
             OnPropertyChanged(nameof(IsProjectFabVisible));
         }
 
         [RelayCommand]
-        private void Details()
+        private async Task Details()
         {
-            // Ustawiac SelectedEmployer
-            NavigationService.NavigateToAsync("//Main/Employers/Projects");
+            await NavigationService.NavigateToAsync("Projects");
         }
 
         [RelayCommand]
-        private void ProjectDetails()
+        private async Task ProjectDetails()
         {
-            NavigationService.NavigateToAsync("//Main/Employers/Projects/Project");
+            await NavigationService.NavigateToAsync("ProjectTimeEntries");
         }
 
         [RelayCommand]
@@ -115,6 +117,16 @@ namespace TimeManagementAppGui.ViewModel
         private List<Project> GetProjectsForEmployer()
         {
             return _projectRepository.GetAllByEmployerId(SelectedEmployer.Id);
+        }
+
+        private IEnumerable<TimeEntry> GetTimeEntriesForProject()
+        {
+            return _timeEntryRepository.GetTimeEntriesForProject(SelectedProject.Id);
+        }
+
+        public void NavigateBack()
+        {
+            NavigationService.PopAsync();
         }
     }
 }

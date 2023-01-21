@@ -21,20 +21,31 @@
                 </dxcv:DXCollectionView.Behaviors>
                 <dxcv:DXCollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="18,1,18,7">
-                            <Label Text="{Binding Name}"
-                               TextColor="#55575c"/>
-                        </StackLayout>
+                        <Border>
+                            <StackLayout Padding="18,1,18,7" 
+                                         HeightRequest="60">
+                                <Label Text="{Binding Name}" 
+                                       Margin="0,10,0,0" 
+                                       FontSize="Subtitle" 
+                                       FontAttributes="Bold"
+                                       TextColor="#55575c"/>
+                            </StackLayout>
+                        </Border>
                     </DataTemplate>
                 </dxcv:DXCollectionView.ItemTemplate>
                 <dxcv:DXCollectionView.SelectedItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="18,1,18,7"
-                                         BackgroundColor="{StaticResource Primary}">
-                            <Label 
-                                    Text="{Binding Name}"
-                                    TextColor="{StaticResource White}"/>
-                        </StackLayout>
+                        <Border>
+                            <StackLayout Padding="18,1,18,7" 
+                                     HeightRequest="60"
+                                     BackgroundColor="{StaticResource Primary}">
+                                <Label Margin="0,10,0,0" 
+                                   FontSize="Subtitle" 
+                                   FontAttributes="Bold"
+                                   Text="{Binding Name}"
+                                   TextColor="{StaticResource White}"/>
+                            </StackLayout>
+                        </Border>
                     </DataTemplate>
                 </dxcv:DXCollectionView.SelectedItemTemplate>
             </dxcv:DXCollectionView>

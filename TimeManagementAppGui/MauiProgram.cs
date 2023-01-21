@@ -41,6 +41,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<EmployersViewModel>();
         builder.Services.AddSingleton<AddProjectViewModel>();
 
+        builder.Services.AddTransient<ProjectTimeEntries>();
         builder.Services.AddTransient<MonthView>();
         builder.Services.AddTransient<AppointmentsPage>();
         builder.Services.AddTransient<AddTimeEntry>();
