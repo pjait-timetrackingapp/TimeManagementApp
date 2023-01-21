@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows.Input;
 using TimeManagementAppGui.ViewModel.Base;
 using TimeManagementAppGui.ViewModel.Base.Dialog;
@@ -130,6 +131,8 @@ namespace TimeManagementAppGui.ViewModel
         public long EmployerId { get; set; }
         public long ProjectId { get; set; }
         public long EntryId { get; set; }
+        public string Duration { get => TimeEntry.Duration.ToString(); }
+        public string DateStarted { get => TimeEntry.DateStarted.ToString("dddd, dd MMMM yyyy HH:mm", CultureInfo.CreateSpecificCulture("pl-PL")); }
         public TimeEntry TimeEntry { get; set; }
     }
 }

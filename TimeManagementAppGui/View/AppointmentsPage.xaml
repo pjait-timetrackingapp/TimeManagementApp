@@ -16,10 +16,13 @@
                 <dxcv:DXCollectionView.ItemTemplate x:FactoryMethod="New">
                     <DataTemplate>
                         <StackLayout Padding="18,1,18,7">
-                            <Label Text="{Binding TimeEntry.Description}"
-                           Margin="0,2"
-                           TextColor="#55575c"/>
-                            <Label Text="{Binding TimeEntry.DateStarted, StringFormat='{0:dddd, dd MMMM yyyy HH:mm}'}"
+                            <Label Text="{Binding TimeEntry.Description}" FontSize="Medium" FontAttributes="Bold"
+                                   Margin="0,2"
+                                   TextColor="#55575c"/>
+                            <Label Text="{Binding DateStarted}"
+                               TextColor="#959aa0" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Duration}" HorizontalOptions="End" FontAutoScalingEnabled="True"
+                                   FontAttributes="Bold" FontSize="Small"
                                TextColor="#959aa0"/>
                         </StackLayout>
                     </DataTemplate>
@@ -28,11 +31,14 @@
                     <DataTemplate>
                         <StackLayout Padding="18,1,18,7" 
                                      BackgroundColor="{StaticResource Primary}">
-                            <Label Text="{Binding TimeEntry.Description}"
+                            <Label Text="{Binding TimeEntry.Description}" FontSize="Medium" FontAttributes="Bold"
                                 Margin="0,2"
                                 TextColor="{StaticResource White}"/>
-                            <Label Text="{Binding TimeEntry.DateStarted, StringFormat='{0:dddd, dd MMMM yyyy HH:mm}'}"
-                                TextColor="{StaticResource White}"/>
+                            <Label Text="{Binding DateStarted}"
+                                   TextColor="{StaticResource White}"  HorizontalOptions="Start"/>
+                            <Label Text="{Binding Duration}" HorizontalOptions="End" FontAutoScalingEnabled="True"
+                                   FontAttributes="Bold" FontSize="Small"
+                               TextColor="{StaticResource White}"/>
                         </StackLayout>
                     </DataTemplate>
                 </dxcv:DXCollectionView.SelectedItemTemplate>

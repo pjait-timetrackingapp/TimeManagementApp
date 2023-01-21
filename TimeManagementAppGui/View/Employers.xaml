@@ -11,9 +11,6 @@
     <Grid>
         <VerticalStackLayout>
             <dxcv:DXCollectionView x:Name="employersView" SelectionMode="Single" SelectedItem="{Binding SelectedEmployer, Mode=TwoWay}">
-                <dxcv:DXCollectionView.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding SwipeCommand}"/>
-                </dxcv:DXCollectionView.GestureRecognizers>
                 <dxcv:DXCollectionView.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="SelectionChanged" 
