@@ -2,8 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TimeManagementAppGui.View.AddProject"
-             Title="AddProject">
-    <VerticalStackLayout>
-        
-    </VerticalStackLayout>
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Dodaj projekt">
+    <Grid VerticalOptions="Center" Margin="10,0,10,0" HorizontalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Entry Grid.Row="0"
+               Text="{Binding ProjectName, Mode=TwoWay}" 
+               Placeholder="Nazwa projektu"/>
+        <Button 
+            Grid.Row="1" 
+            HorizontalOptions="Center" 
+            Margin="0, 20, 0, 0" 
+            Text="Dodaj"
+            Command="{Binding AddNewProjectCommand}"/>
+    </Grid>
 </ContentPage>

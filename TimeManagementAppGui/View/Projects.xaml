@@ -5,6 +5,9 @@
              xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Projects">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding AddProjectCommand}"/>
+    </ContentPage.ToolbarItems>
     <Grid>
         <VerticalStackLayout>
             <dxcv:DXCollectionView x:Name="projectsView" SelectionMode="Single" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemsSource="{Binding Projects}">

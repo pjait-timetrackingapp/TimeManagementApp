@@ -15,6 +15,10 @@ namespace TimeManagementAppGui.ViewModel
         private readonly IEmployerRepository _employerRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly ITimeEntryRepository _timeEntryRepository;
+
+        [ObservableProperty]
+        private string _projectName;
+        
         [ObservableProperty]
         private Employer _selectedEmployer;
         [ObservableProperty]
@@ -79,6 +83,12 @@ namespace TimeManagementAppGui.ViewModel
         }
 
         [RelayCommand]
+        private void AddProject()
+        {
+            NavigationService.NavigateToAsync("AddProject");
+        }
+
+        [RelayCommand]
         private void AddEmployer()
         {
             NavigationService.NavigateToAsync("AddEmployer");
@@ -112,6 +122,15 @@ namespace TimeManagementAppGui.ViewModel
 
             SelectedProject = null;
             OnPropertyChanged(nameof(IsProjectFabVisible));
+        }
+
+        [RelayCommand]
+        private void AddNewProject()
+        {
+            var newProject = new Project(new TmaLib.UserInputAddProject(ProjectName, SelectedEmployer.Id));
+            var addedProject = _projectRepository.Add(newProject);
+            _projectRepository.SaveChanges();
+            Projects.Add(addedProject);
         }
 
         private List<Project> GetProjectsForEmployer()

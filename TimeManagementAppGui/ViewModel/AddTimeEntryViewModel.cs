@@ -59,7 +59,7 @@ namespace TimeManagementAppGui.ViewModel
         public AddTimeEntryViewModel(SchedulerDataViewModel schedulerData, IDialogService dialogService, INavigationService navigationService, IEmployerRepository employerRepository, IProjectRepository projectRepository, ITimeEntryRepository timeEntryRepository) : base(dialogService, navigationService)
         {
             AddItem = new AsyncRelayCommand(Add);
-            this._schedulerData = schedulerData;
+            _schedulerData = schedulerData;
             _employerRepository = employerRepository;
             _projectRepository = projectRepository;
             _timeEntryRepository = timeEntryRepository;
@@ -87,13 +87,12 @@ namespace TimeManagementAppGui.ViewModel
             var addedEntry = _timeEntryRepository.Add(entry);
             _schedulerData.TimeEntries.Add(new SchedulerEntry()
             {
-                LabelId = addedEntry.ProjectId % 10 + 1,
+                LabelId = (addedEntry.ProjectId % 10) + 1,
                 TimeEntry = addedEntry,
                 ProjectId = addedEntry.ProjectId,
                 EntryId = addedEntry.Id,
             });
             _timeEntryRepository.SaveChanges();
-            //await NavigationService.PopAsync();
         }
     }
 }

@@ -15,7 +15,7 @@
 
         public Project(UserInputAddProject userInputAddProject) : base()
         {
-            Id = userInputAddProject.ProjectId;
+            EmployerId = userInputAddProject.EmployerId;
             ProjectName = userInputAddProject.ProjectName;
         }
 

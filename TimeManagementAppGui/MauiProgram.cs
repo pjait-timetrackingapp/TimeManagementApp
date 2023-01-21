@@ -49,6 +49,8 @@ public static class MauiProgram
         builder.Services.AddTransient<AddEmployerView>();
         builder.Services.AddTransient<AddProject>();
         builder.Services.AddTransient<Projects>();
+        builder.Services.AddTransient<AddProject>();
+
         return builder.Build();
     }
 }

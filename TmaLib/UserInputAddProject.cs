@@ -3,12 +3,13 @@
     public class UserInputAddProject
     {
         public string ProjectName { get; set; }
-        public int ProjectId { get; set; }
+        public int EmployerId { get; set; }
 
-        public UserInputAddProject(int id, string name)
+        public UserInputAddProject(string name, int employerId)
         {
-            ProjectId = id;
             ProjectName = name;
+            EmployerId = employerId;
+
         }
     }
 }

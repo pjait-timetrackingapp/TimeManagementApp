@@ -17,6 +17,7 @@ public partial class App : Application
 	{
         Routing.RegisterRoute("AddEntry", typeof(AddTimeEntry));
 		Routing.RegisterRoute("AddEmployer", typeof(AddEmployerView));
+		Routing.RegisterRoute("AddProject", typeof(AddProject));
 		Routing.RegisterRoute("Appointments", typeof(AppointmentsPage));
 		Routing.RegisterRoute("//Main/Calendar", typeof(MonthView));
 		Routing.RegisterRoute("//Main/Employers", typeof(Employers));
