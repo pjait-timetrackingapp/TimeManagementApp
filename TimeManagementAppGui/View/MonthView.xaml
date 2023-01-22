@@ -26,7 +26,7 @@
             HorizontalOptions="Start" 
             VerticalTextAlignment="Center" 
             HorizontalTextAlignment="Start" 
-            BackgroundColor="WhiteSmoke" 
+            BackgroundColor="{AppThemeBinding Light=White}" 
             TextColor="Black" 
             FontAttributes="Bold"/>
         <Label 
@@ -36,7 +36,7 @@
             HorizontalOptions="Center"
             VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"
-            BackgroundColor="WhiteSmoke"
+            BackgroundColor="{AppThemeBinding Light=White}"
             TextColor="Black"
             FontAttributes="Bold"/>
         <schedulerOld:MonthView Grid.Row="1" Grid.ColumnSpan="3" x:Name="MonthScheduler" Tap="MonthScheduler_Tap">

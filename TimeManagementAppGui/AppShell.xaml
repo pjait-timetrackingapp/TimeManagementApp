@@ -21,9 +21,5 @@
             Title="Pracodawcy"
             ContentTemplate="{DataTemplate views:Employers}"
             Route="Employers"/>
-        <ShellContent 
-            Title="Ustawienia"
-            ContentTemplate="{DataTemplate views:Settings}"
-            Route="Settings" />
     </FlyoutItem>
 </Shell>

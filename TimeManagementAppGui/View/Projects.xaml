@@ -4,40 +4,44 @@
              x:Class="TimeManagementAppGui.View.Projects"
              xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="Projects">
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Charts;assembly=DevExpress.Maui.Charts"
+             Title="Projekty">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+" Command="{Binding AddProjectCommand}"/>
     </ContentPage.ToolbarItems>
-    <Grid>
-        <VerticalStackLayout>
-            <dxcv:DXCollectionView x:Name="projectsView" SelectionMode="Single" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemsSource="{Binding Projects}">
-                <dxcv:DXCollectionView.Behaviors>
-                    <toolkit:EventToCommandBehavior 
+    <ScrollView>
+        <Grid>
+            <VerticalStackLayout>
+                <dxcv:DXCollectionView x:Name="projectsView" SelectionMode="Single" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemsSource="{Binding Projects}" MaximumHeightRequest="600" VerticalOptions="End" HorizontalOptions="Start">
+                    <dxcv:DXCollectionView.Behaviors>
+                        <toolkit:EventToCommandBehavior 
                         EventName="SelectionChanged" 
                         Command="{Binding ProjectSelectionChangedCommand}"/>
-                </dxcv:DXCollectionView.Behaviors>
-                <dxcv:DXCollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-                            <StackLayout Padding="18,1,18,7" HeightRequest="60">
-                                <Label Text="{Binding ProjectName}" Margin="0,10,0,0" FontSize="Subtitle" FontAttributes="Bold"
+                    </dxcv:DXCollectionView.Behaviors>
+                    <dxcv:DXCollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <StackLayout Padding="18,1,18,7" HeightRequest="60">
+                                    <Label Text="{Binding ProjectName}" Margin="0,10,0,0" FontSize="Subtitle" FontAttributes="Bold"
                                TextColor="#55575c"/>
-                            </StackLayout>
-                        </Border>
-                    </DataTemplate>
-                </dxcv:DXCollectionView.ItemTemplate>
-                <dxcv:DXCollectionView.SelectedItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="18,1,18,7" HeightRequest="60"
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </dxcv:DXCollectionView.ItemTemplate>
+                    <dxcv:DXCollectionView.SelectedItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="18,1,18,7" HeightRequest="60"
                                          BackgroundColor="{StaticResource Primary}">
-                            <Label Text="{Binding ProjectName}" Margin="0,10,0,0" FontSize="Subtitle" FontAttributes="Bold"
+                                <Label Text="{Binding ProjectName}" Margin="0,10,0,0" FontSize="Subtitle" FontAttributes="Bold"
                                    TextColor="{StaticResource White}"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </dxcv:DXCollectionView.SelectedItemTemplate>
-            </dxcv:DXCollectionView>
-        </VerticalStackLayout>
-        <Button
+                            </StackLayout>
+                        </DataTemplate>
+                    </dxcv:DXCollectionView.SelectedItemTemplate>
+                </dxcv:DXCollectionView>
+            </VerticalStackLayout>
+            
+
+            <Button
                 Grid.Row="0"
                 CornerRadius="35"
                 HeightRequest="55"
@@ -50,7 +54,7 @@
                 Command="{Binding RemoveSelectedProjectCommand}"
                 IsVisible="{Binding IsProjectFabVisible}"/>
 
-        <Button
+            <Button
                 Grid.Row="0"
                 CornerRadius="16"
                 HeightRequest="56"
@@ -62,5 +66,45 @@
                 FontAttributes="Bold"
                 Command="{Binding ProjectDetailsCommand}"
                 IsVisible="{Binding IsProjectFabVisible}"/>
-    </Grid>
+            <!--TODO in the near future, but commenting it out rn-->
+            <!--<dxc:PieChartView Grid.Row="0" Grid.Column="0"  HeightRequest="200">
+                <dxc:PieChartView.Series>
+                    <dxc:DonutSeries>
+                        <dxc:DonutSeries.Data>
+                            <dxc:PieSeriesDataAdapter DataSource="{Binding Projects}" LabelDataMember="ProjectName" ValueDataMember="Id"/>
+                        </dxc:DonutSeries.Data>
+                        <dxc:DonutSeries.Label>
+                            <dxc:PieSeriesLabel Position="TwoColumns" TextPattern="{}{VP}%" Indent="20">
+                                <dxc:PieSeriesLabel.Style>
+                                    <dxc:PieSeriesLabelStyle ConnectorThickness="1">
+                                        <dxc:PieSeriesLabelStyle.TextStyle>
+                                            <dxc:TextStyle Color="#000" Size="12"/>
+                                        </dxc:PieSeriesLabelStyle.TextStyle>
+                                    </dxc:PieSeriesLabelStyle>
+                                </dxc:PieSeriesLabel.Style>
+                            </dxc:PieSeriesLabel>
+                        </dxc:DonutSeries.Label>
+                    </dxc:DonutSeries>
+                </dxc:PieChartView.Series>
+                <dxc:PieChartView.Legend>
+                    <dxc:Legend Orientation="TopToBottom"
+                        HorizontalPosition="Center"
+                        VerticalPosition="BottomOutside">
+                        <dxc:Legend.Style>
+                            <dxc:LegendStyle BorderColor="LightGray" BorderThickness="1"
+                                     BackgroundColor="#424651"
+                                     MarkerSize="18" TextIndent="6"
+                                     ItemsVerticalIndent="12">
+                                <dxc:LegendStyle.TextStyle>
+                                    <dxc:TextStyle Color="White" Size="12"/>
+                                </dxc:LegendStyle.TextStyle>
+                            </dxc:LegendStyle>
+                        </dxc:Legend.Style>
+                    </dxc:Legend>
+                </dxc:PieChartView.Legend>
+            </dxc:PieChartView>-->
+        </Grid>
+
+        
+    </ScrollView>
 </ContentPage>

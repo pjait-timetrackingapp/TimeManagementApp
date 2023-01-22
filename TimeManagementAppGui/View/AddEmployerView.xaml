@@ -15,7 +15,7 @@
             Grid.Row="1" 
             HorizontalOptions="Center" 
             Margin="0, 20, 0, 0" 
-            Text="Add employer"
+            Text="Dodaj"
             Command="{Binding AddEmployerCommand}"/>
     </Grid>
 </ContentPage>

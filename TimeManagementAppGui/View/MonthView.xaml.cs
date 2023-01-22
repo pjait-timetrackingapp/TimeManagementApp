@@ -34,4 +34,9 @@ public partial class MonthView : ContentPage
     {
         vm.DisplayDetailsPage(date);
     }
+
+    protected override void OnAppearing()
+    {
+        vm.InitializeCollection();
+    }
 }
