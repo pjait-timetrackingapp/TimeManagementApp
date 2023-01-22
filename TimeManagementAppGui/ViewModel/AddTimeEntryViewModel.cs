@@ -14,8 +14,17 @@ namespace TimeManagementAppGui.ViewModel
         private string _time;
         private string _description;
         private DateTime _date = DateTime.Now;
-        [ObservableProperty]
         private Project _selectedProject;
+
+        public Project SelectedProject
+        {
+            get => _selectedProject;
+            set
+            {
+                _selectedProject = value;
+                OnPropertyChanged(nameof(SelectedProject));
+            }
+        }
 
         public Employer SelectedEmployer 
         { 
@@ -24,11 +33,8 @@ namespace TimeManagementAppGui.ViewModel
             {
                 try
                 {
-                    if (_selectedEmployer != value)
-                    {
-                        _selectedEmployer = value;
-                        OnPropertyChanged(nameof(SelectedEmployer));
-                    }
+                    _selectedEmployer = value;
+                    OnPropertyChanged(nameof(SelectedEmployer));
                 }
                 catch (Exception)
                 {
@@ -71,7 +77,7 @@ namespace TimeManagementAppGui.ViewModel
         {
             if (e.PropertyName == nameof(SelectedEmployer))
             {
-                Projects = _projectRepository.GetAllByEmployerId(SelectedEmployer.Id);
+                Projects = SelectedEmployer is null ? new() : _projectRepository.GetAllByEmployerId(SelectedEmployer.Id);
                 OnPropertyChanged(nameof(Projects));
             }
         }
